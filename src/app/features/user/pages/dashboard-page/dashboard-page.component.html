@@ -1,0 +1,19 @@
+<section class="main-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="material-icons boards-ic">dashboard</span>
+      <h2 class="seaction-title">Your Boards</h2>
+    </div>
+    <div class="section-content">
+
+      <app-board-card
+        (click)="onBoardCardClick(item)"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}"
+        *ngFor="let item of boardList"
+        [item]="item">
+      </app-board-card>
+
+    </div>
+  </div>
+</section>

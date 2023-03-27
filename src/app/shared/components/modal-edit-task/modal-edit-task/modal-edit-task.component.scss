@@ -1,0 +1,16 @@
+.edit-task-form {
+  width: 340px;
+  height: auto;
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.edit-task-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}

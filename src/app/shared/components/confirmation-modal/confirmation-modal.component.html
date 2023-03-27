@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{innerModalText}}</h1>
+<div mat-dialog-content>
+  {{data.innerDialogText}}
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button color="primary" mat-dialog-close (click)="close()">No</button>
+  <button mat-raised-button mat-dialog-close cdkFocusInitial color="primary" (click)="confirmHandler()">Yes</button>
+</div>

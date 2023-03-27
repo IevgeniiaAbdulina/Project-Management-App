@@ -1,0 +1,124 @@
+<mat-toolbar color="primary" class="app-header">
+  <header>
+    <div class="left-wrap">
+      <div class="dashboard-link" *ngIf="(authUserService.user | async)">
+        <a
+          mat-icon-button
+          color="accent"
+          class="dashboard-button"
+          [routerLink]="['users/dashboard']">
+          <mat-icon class="dashboard-ic">dashboard</mat-icon>
+        </a>
+        <h2>Boards</h2>
+      </div>
+      <div class="logo"
+        *ngIf="!(authUserService.user | async)"
+        [routerLink]="['']">
+        <img mat-card-sm-image src="../../../../assets/img/logo-img.svg" alt="Logo image" class="logo-img">
+        <h1>PM App</h1>
+      </div>
+
+      <!-- Create a New Board -->
+
+      <button mat-raised-button
+        *ngIf="authUserService.user | async"
+        class="create-board-btn"
+        color="accent"
+        (click)="openDialog()"
+        [disabled]="false">
+        Create New Board
+      </button>
+    </div>
+
+    <!-- Search bar -->
+
+    <div class="search-bar" *ngIf="authUserService.user | async">
+      <mat-form-field appearance="outline"
+        [color]="colorControl.value!"
+        [formGroup]="searchForm"
+        (ngSubmit)="onSearchSubmit()">
+
+        <input matInput class="search-input"
+          placeholder="Search task ..."
+          formControlName="valueInput"
+          (keyup.enter)="onSearchSubmit()">
+
+        <mat-icon matSuffix (click)="onSearchSubmit()">search</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="nav">
+
+      <!-- expires token | user is not login -->
+
+      <div class="nav-auth" *ngIf="!(authUserService.user | async)">
+        <div class="login">
+          <a mat-raised-button [routerLink]="['login']"
+          class="login-btn"
+          [disabled]="false">Login</a>
+        </div>
+        <div class="sign-up">
+          <a mat-raised-button [routerLink]="['signup']"
+            color="accent"
+            [disabled]="false">Sign up</a>
+
+        </div>
+      </div>
+
+      <!-- unexpired token | user is authorised -->
+
+      <div class="nav-auth" *ngIf="authUserService.user | async as user">
+        <p class="user-name">{{ user.name }}</p>
+
+        <button mat-icon-button
+          [matMenuTriggerFor]="appMenu"
+          [matMenuTriggerData]="{name: user.name}">
+
+          <mat-icon>account_circle</mat-icon>
+        </button>
+
+        <mat-menu #appMenu="matMenu" xPosition="before">
+          <ng-template matMenuContent let-name="name">
+            <a mat-menu-item
+              (click)="onEditUserProfileClick()"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}">
+              Edit profile
+            </a>
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="onLogOut()" routerLinkActive="active">Log out {{ user.name }}</button>
+          </ng-template>
+        </mat-menu>
+
+      </div>
+
+      <!-- Localization -->
+
+      <div class="lang">
+        <button mat-icon-button
+        matTooltip="Choose a language"
+          aria-label="Localization icon button with a vertical three language icon"
+          [matMenuTriggerFor]="langMenu"
+          [matMenuTriggerData]="{en: 'English',  pl: 'Polski'}">
+
+          <mat-icon>language</mat-icon>
+        </button>
+
+        <mat-menu #langMenu="matMenu" xPosition="before">
+          <ng-template matMenuContent let-en="en" let-pl="pl">
+            <button mat-menu-item disabled>
+              <span>Choose a language</span>
+            </button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item>{{en}}</button>
+            <mat-divider></mat-divider>
+            <button mat-menu-item>{{pl}}</button>
+          </ng-template>
+        </mat-menu>
+
+      </div>
+
+    </div>
+  </header>
+</mat-toolbar>
+<app-loading-progress-bar></app-loading-progress-bar>

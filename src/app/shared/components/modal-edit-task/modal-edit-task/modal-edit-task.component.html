@@ -1,0 +1,57 @@
+<h1 mat-dialog-title>{{data.modalHeader}}</h1>
+<form class="edit-task-form"
+  [formGroup]="editTaskForm"
+  (ngSubmit)="onSubmit()">
+
+  <div mat-dialog-content class="edit-task-form-content">
+
+    <!-- TITLE -->
+    <mat-form-field>
+      <input
+        matInput
+        [(ngModel)]="title"
+        name="title"
+        placeholder={{data.title}}
+        formControlName="title">
+    </mat-form-field>
+
+    <!-- DESCRIPTION -->
+    <mat-form-field>
+      <input
+        matInput
+        [(ngModel)]="description"
+        name="description"
+        placeholder={{data.description}}
+        formControlName="description">
+    </mat-form-field>
+
+  </div>
+  <div mat-dialog-actions class="edit-task-actions">
+    <button
+      mat-stroked-button
+      mat-dialog-close
+      color="warn"
+      (click)="onDeleteClick()">
+      Delete
+    </button>
+
+    <div>
+      <button
+        mat-stroked-button
+        mat-dialog-close
+        (click)="onNoClick()">
+        Cancel
+      </button>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [mat-dialog-close]="[title, description]"
+        cdkFocusInitial>
+        Submit
+      </button>
+    </div>
+  </div>
+</form>
+

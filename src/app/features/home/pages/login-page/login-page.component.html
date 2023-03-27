@@ -1,0 +1,76 @@
+<div class="login-container">
+  <mat-card class="login-content">
+    <header class="login-header">
+      <mat-toolbar class="login-toolbar" color="primary">Login</mat-toolbar>
+    </header>
+
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()">
+
+      <!-- USER LOGIN -->
+      <mat-form-field>
+        <mat-icon matPrefix>account_circle</mat-icon>
+        <input
+          matInput
+          #input
+          minlength="4"
+          maxlength="20"
+          type="text"
+          placeholder="Login*"
+          formControlName="login">
+
+        <mat-error *ngIf="loginForm.get('login')?.errors?.['required']">
+          This field is requared.
+        </mat-error>
+
+      </mat-form-field>
+
+      <!-- PASSWORD -->
+      <mat-form-field>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input
+          matInput
+          autocomplete="false"
+          placeholder="Password*"
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+          required>
+
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+          (click)="$event.preventDefault()">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+
+        <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">
+          This field is requared.
+        </mat-error>
+
+      </mat-form-field>
+      <mat-error *ngIf="!submitted" class="not-submitted">
+        {{ errorSubmitMessage }}
+      </mat-error>
+
+      <!-- BUTTON SUBMIT -->
+      <mat-card-actions>
+        <button
+          class="login-submit"
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!loginForm.valid">
+          Submit
+        </button>
+      </mat-card-actions>
+    </form>
+
+  </mat-card>
+  <div class="login-hint">
+    <p>Don't have an account? <a mat-button [routerLink]="['/signup']">Sign up</a></p>
+  </div>
+</div>

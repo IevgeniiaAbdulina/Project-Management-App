@@ -1,0 +1,113 @@
+<div class="user-profile-container">
+  <mat-card class="user-profile-content">
+    <header class="user-profile-header">
+      <mat-toolbar class="user-profile-toolbar" color="primary">Edit user profile</mat-toolbar>
+    </header>
+    <form
+      [formGroup]="userProfileForm"
+      (ngSubmit)="onSubmit()">
+
+      <!-- USER NAME -->
+      <label for="name">User name</label>
+      <mat-form-field hintLabel="Max 20 characters">
+        <mat-icon matPrefix>account_circle</mat-icon>
+        <input
+          matInput
+          #input
+          minlength="4"
+          maxlength="20"
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Update Name*"
+          formControlName="name">
+
+        <mat-hint align="end" class="form-hint">{{input.value.length}}/20</mat-hint>
+
+        <mat-error *ngIf="userProfileForm.get('name')?.errors?.['required']">
+          This field is required.
+        </mat-error>
+
+      </mat-form-field>
+
+       <!-- LOGIN -->
+       <label for="name">Login</label>
+       <mat-form-field>
+        <mat-icon matPrefix>login</mat-icon>
+        <input
+          matInput
+          type="text"
+          placeholder="Login*"
+          formControlName="login">
+
+        <mat-error *ngIf="userProfileForm.get('login')?.errors?.['required']">
+          This field is required.
+        </mat-error>
+
+      </mat-form-field>
+
+      <!-- PASSWORD -->
+      <label for="password">Password</label>
+      <mat-form-field>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input
+          matInput
+          name="password"
+          id="password"
+          autocomplete="false"
+          placeholder="Password*"
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+          required>
+
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+          (click)="$event.preventDefault()">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-hint class="form-hint">
+          Choose a password of at least eight characters, one uppercase letter and one number.
+        </mat-hint>
+
+        <mat-error *ngIf="checkValidation('password')">
+          {{ getErrorsPassword() }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-divider></mat-divider>
+
+      <div class="form-action">
+        <button class="user-profile-delete"
+            mat-stroked-button
+            color="warn"
+            (click)="onDeleteProfile()"
+            (click)="$event.preventDefault()">
+
+            <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
+            Delete user
+        </button>
+        <div class="user-profile-cancel">
+          <button
+              mat-stroked-button
+              color="primary"
+              (click)="onCancel()"
+              (click)="$event.preventDefault()">
+              Cancel
+          </button>
+          <button
+              class="user-profile-submit"
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="!userProfileForm.valid">
+              Update profile
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+</div>
