@@ -5,7 +5,7 @@ import {
   Validators,
   ValidationErrors,
   AbstractControl,
-  FormGroupDirective
+  FormGroupDirective,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthUserService } from 'src/app/features/user/services/auth-user/auth-user.service';
@@ -14,7 +14,7 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-sign-up-page',
   templateUrl: './sign-up-page.component.html',
-  styleUrls: ['./sign-up-page.component.scss']
+  styleUrls: ['./sign-up-page.component.scss'],
 })
 export class SignUpPageComponent implements OnInit{
   hide = true;
@@ -32,7 +32,7 @@ export class SignUpPageComponent implements OnInit{
         Validators.required,
         Validators.minLength(4),
       ]),
-      login: new FormControl('', Validators.required ),
+      login: new FormControl('', [Validators.required] ),
       password: new FormControl('', [
         Validators.required,
         this.passwordCustomValidator
@@ -42,13 +42,13 @@ export class SignUpPageComponent implements OnInit{
 
   get f() { return this.signUpForm.controls };
 
-  getErrorsName() {
-    const nameErrors = this.signUpForm.get('name')?.errors;
-    return nameErrors?.['required'] ?
-      'Name is required.' :
-      nameErrors?.['minlength'] ?
-      'Name must be at least 4 characters long.' : '';
-  }
+  // getErrorsName() {
+  //   const nameErrors = this.signUpForm.get('name')?.errors;
+  //   return nameErrors?.['required'] ?
+  //     'Name is required.' :
+  //     nameErrors?.['minlength'] ?
+  //     'Name must be at least 4 characters long.' : '';
+  // }
 
   passwordCustomValidator(control: AbstractControl): ValidationErrors | null {
     let enteredPassword = control.value;
@@ -56,13 +56,13 @@ export class SignUpPageComponent implements OnInit{
     return (!passwordPattern.test(enteredPassword) && enteredPassword) ? { 'requirements': true } : null;
   }
 
-  getErrorsPassword() {
-    const passwordErrors = this.signUpForm.get('password')?.errors;
-    return passwordErrors?.['required'] ?
-      'Password is required.' :
-      passwordErrors?.['requirements'] ?
-      'Password must be a combination of lower-case, upper-case, numbers and at least eight characters long.' : '';
-  }
+  // getErrorsPassword() {
+  //   const passwordErrors = this.signUpForm.get('password')?.errors;
+  //   return passwordErrors?.['required'] ?
+  //     'Password is required.' :
+  //     passwordErrors?.['requirements'] ?
+  //     'Password must be a combination of lower-case, upper-case, numbers and at least eight characters long.' : '';
+  // }
 
   checkValidation(input: string) {
     const validation = this.signUpForm.get(input)?.invalid && (this.signUpForm.get(input)?.dirty || this.signUpForm.get(input)?.touched);

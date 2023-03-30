@@ -6,6 +6,7 @@ import { ConfirmationModalComponent } from './components/confirmation-modal/conf
 import { ReactiveFormsModule } from '@angular/forms';
 import { HighlightCustomColorDirective } from './directives/highlight-custom-color.directive';
 import { ModalEditTaskComponent } from './components/modal-edit-task/modal-edit-task/modal-edit-task.component';
+import { ErrorMessagesComponent } from './components/error-messages/error-messages/error-messages.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +19,11 @@ import { ModalEditTaskComponent } from './components/modal-edit-task/modal-edit-
     CommonModule,
     MaterialDesignModule,
     ReactiveFormsModule,
+    ErrorMessagesComponent,
   ],
   exports: [
     HighlightCustomColorDirective,
+    ErrorMessagesComponent
   ],
 })
 export class SharedModule { }

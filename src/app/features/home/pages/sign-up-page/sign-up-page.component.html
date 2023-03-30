@@ -23,8 +23,9 @@
 
         <mat-hint align="end" class="form-hint">{{input.value.length}}/20</mat-hint>
 
-        <mat-error *ngIf="checkValidation('name')">
-          {{getErrorsName()}}
+        <mat-error app-error-messages
+          [control]="signUpForm.get('name')!"
+          class="error-message">
         </mat-error>
 
       </mat-form-field>
@@ -38,8 +39,9 @@
           placeholder="Login*"
           formControlName="login">
 
-          <mat-error *ngIf="checkValidation('login')">
-            Login is required.
+          <mat-error app-error-messages
+            [control]="signUpForm.get('login')!"
+            class="error-message">
           </mat-error>
 
       </mat-form-field>
@@ -67,8 +69,9 @@
         <mat-hint class="form-hint">Choose a password of at least eight characters, one uppercase letter and one number
         </mat-hint>
 
-        <mat-error *ngIf="checkValidation('password')">
-          {{ getErrorsPassword() }}
+        <mat-error app-error-messages
+          [control]="signUpForm.get('password')!"
+          class="error-message">
         </mat-error>
 
       </mat-form-field>
