@@ -3,8 +3,6 @@ import {
   FormControl,
   FormGroup,
   Validators,
-  ValidationErrors,
-  AbstractControl,
   FormGroupDirective,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -32,42 +30,20 @@ export class SignUpPageComponent implements OnInit{
         Validators.required,
         Validators.minLength(4),
       ]),
-      login: new FormControl('', [Validators.required] ),
-      password: new FormControl('', [
+      login: new FormControl('', [
         Validators.required,
-        this.passwordCustomValidator
+        Validators.minLength(4),
       ]),
+      password: new FormControl('',
+      [
+        Validators.required,
+        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/),
+      ]
+      ),
     });
   };
 
   get f() { return this.signUpForm.controls };
-
-  // getErrorsName() {
-  //   const nameErrors = this.signUpForm.get('name')?.errors;
-  //   return nameErrors?.['required'] ?
-  //     'Name is required.' :
-  //     nameErrors?.['minlength'] ?
-  //     'Name must be at least 4 characters long.' : '';
-  // }
-
-  passwordCustomValidator(control: AbstractControl): ValidationErrors | null {
-    let enteredPassword = control.value;
-    let passwordPattern =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
-    return (!passwordPattern.test(enteredPassword) && enteredPassword) ? { 'requirements': true } : null;
-  }
-
-  // getErrorsPassword() {
-  //   const passwordErrors = this.signUpForm.get('password')?.errors;
-  //   return passwordErrors?.['required'] ?
-  //     'Password is required.' :
-  //     passwordErrors?.['requirements'] ?
-  //     'Password must be a combination of lower-case, upper-case, numbers and at least eight characters long.' : '';
-  // }
-
-  checkValidation(input: string) {
-    const validation = this.signUpForm.get(input)?.invalid && (this.signUpForm.get(input)?.dirty || this.signUpForm.get(input)?.touched);
-    return validation;
-  }
 
   onSubmit(formData: FormGroup, formDirective: FormGroupDirective): void {
     console.log('Sign Up submited');

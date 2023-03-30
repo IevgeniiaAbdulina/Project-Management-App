@@ -18,10 +18,7 @@ export class ErrorMessagesComponent {
 
 
   get errorMessage() {
-    console.log('[ErrorMessagesComponent] check errorMessage', this.control)
     for(let validatorName in this.control?.errors) {
-      console.log('[ErrorMessagesComponent] check', this.control.touched)
-
       if(this.control.touched) {
         return getValidatorErrorMessage(validatorName, this.control.errors[validatorName])
       }

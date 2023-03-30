@@ -1,27 +1,22 @@
 import { ValidationErrors } from "@angular/forms";
 
 export const getValidatorErrorMessage = (validatorName: string, validatorErrors: ValidationErrors): string|undefined => {
-
     let validatorArgs = errorMessages.get(validatorName)?.validatorErrorsKey?.map(name => {
-        validatorErrors?.[name]
+        validatorErrors?.[name];
     });
-    console.log('[getValidatorErrorMessage] check', validatorName)
 
     return (validatorArgs) ?
         stringFormat(errorMessages.get(validatorName)?.message, ...validatorArgs) :
         errorMessages.get(validatorName)?.message;
 }
 
-// <string, {message: string, validatorErrorsKey: string[]}>
+// Map<string, {message: string, validatorErrorsKey: string[]}>()
 const errorMessages = new Map([
     ['required', { message: 'This field is required' } ],
-    ['minlength', {
-        message: 'This text must be at least 4 characters long.',
-        validatorErrorsKey: ['passwordCustomValidator']
-    } ],
-    ['requiredPassword', {
-        message: 'Password must be a combination of lower-case, upper-case, numbers and at least eight characters long.',
-        validatorErrorsKey: ['passwordCustomValidator']
+    ['minlength', { message: 'This text must be at least 4 characters long.' } ],
+    ['pattern', {
+        message: 'Password must contain at least one number, one uppercase and a lowercase letter and at least 8 characters',
+        validatorErrorsKey :['requiredPattern']
     } ],
 ]);
 
@@ -35,3 +30,10 @@ function stringFormat(template: string|undefined, ...validatorArgs: any[]) {
     }
     return undefined;
  }
+
+ // TODO: custom validator
+// export function passwordCustomValidator(control: AbstractControl): ValidationErrors | null {
+//   let enteredPassword = control.value;
+//   let passwordPattern =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
+//   return (!passwordPattern.test(enteredPassword) && enteredPassword) ? { 'requirements': true } : null;
+// }
