@@ -26,8 +26,14 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      login: ['', Validators.required],
-      password: ['', Validators.required],
+      login: ['', [
+        Validators.required,
+        Validators.minLength(4),
+      ]],
+      password: ['', [
+        Validators.required,
+        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/),
+      ]],
     })
 
     this.authUserService.user.subscribe((u) => {
@@ -43,8 +49,6 @@ export class LoginPageComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls}
 
-  errorSubmitMessage = 'Something went wrong! Check your login or password and try again.';
-
   onSubmit() {
     this.alertService.clear();
     if(this.loginForm.invalid) return;
@@ -56,6 +60,7 @@ export class LoginPageComponent implements OnInit {
           this.router.navigateByUrl(returnUrl);
         },
         error: error => {
+          this.submitted = false;
           this.alertService.error(error);
         }
       })

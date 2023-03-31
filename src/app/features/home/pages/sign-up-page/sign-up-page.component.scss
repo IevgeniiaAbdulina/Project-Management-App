@@ -25,6 +25,10 @@
     display: flex;
     flex-direction: column;
     padding: 0 8px;
+
+    mat-form-field {
+      margin-bottom: 16px;
+    }
   }
 
   & mat-icon {

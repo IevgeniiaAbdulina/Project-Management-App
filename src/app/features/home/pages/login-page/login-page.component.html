@@ -10,7 +10,7 @@
 
       <!-- USER LOGIN -->
       <mat-form-field>
-        <mat-icon matPrefix>account_circle</mat-icon>
+        <mat-icon matPrefix>login</mat-icon>
         <input
           matInput
           #input
@@ -20,8 +20,13 @@
           placeholder="Login*"
           formControlName="login">
 
-        <mat-error *ngIf="loginForm.get('login')?.errors?.['required']">
+        <!-- <mat-error *ngIf="loginForm.get('login')?.errors?.['required']">
           This field is requared.
+        </mat-error> -->
+
+        <mat-error app-error-messages
+          [control]="loginForm.get('login')!"
+          class="error-message">
         </mat-error>
 
       </mat-form-field>
@@ -46,15 +51,26 @@
           (click)="$event.preventDefault()">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
+        <mat-hint class="form-hint">
+          Enter a password of at least eight characters, one uppercase letter, and one number.
+        </mat-hint>
 
-        <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">
+        <!-- <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">
           This field is requared.
+        </mat-error> -->
+
+        <mat-error app-error-messages
+          [control]="loginForm.get('password')!"
+          class="error-message">
         </mat-error>
 
       </mat-form-field>
+
       <mat-error *ngIf="!submitted" class="not-submitted">
-        {{ errorSubmitMessage }}
+        Something went wrong! Check your login or password and try again.
       </mat-error>
+
+      <mat-divider></mat-divider>
 
       <!-- BUTTON SUBMIT -->
       <mat-card-actions>
