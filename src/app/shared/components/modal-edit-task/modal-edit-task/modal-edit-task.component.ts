@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalFormData } from 'src/app/features/interfaces/modal-form-data';
 import { ModalFormResult } from 'src/app/features/interfaces/modal-form-result';
@@ -29,7 +29,10 @@ export class ModalEditTaskComponent {
 
   ngOnInit(): void {
     this.editTaskForm = new FormGroup({
-      title: new FormControl(''),
+      title: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
       description: new FormControl(''),
     })
 

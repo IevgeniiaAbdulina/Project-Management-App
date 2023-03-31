@@ -11,19 +11,29 @@
             <div class="wrapper">
               <input
                 matInput
+                cdkFocusInitial
                 class="column-title"
                 formControlName="title"
                 value="title"
+                placeholder="Title*..."
                 (focus)="onFocusIn($event)"
                 [ngClass]="{'isselected' : isEdited}">
-                <mat-error *ngIf="formColumnTitle.get('title')?.errors?.['required']">Title is reqired</mat-error>
+
               <span class="material-icons reorder">reorder</span>
             </div>
+
+            <mat-error app-error-messages *ngIf="isEdited"
+              [control]="formColumnTitle.get('title')!"
+              class="error-message">
+            </mat-error>
+
             <div *ngIf="isEdited"
               class="actions">
               <button class="actions-left"
                 mat-stroked-button
                 color="warn"
+                type="button"
+                (keydown.enter)="$event.preventDefault()"
                 (click)="onDeleteColumn()">
                 Delete
               </button>
@@ -31,11 +41,14 @@
                 <button
                   mat-stroked-button
                   color="primary"
+                  type="button"
+                  (keydown.enter)="$event.preventDefault()"
                   (click)="onFormClose()">
                   Cancel
                 </button>
                 <button
                   mat-raised-button
+                  cdkFocusInitial
                   color="primary"
                   type="submit"
                   [disabled]="formColumnTitle.invalid">

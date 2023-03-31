@@ -1,10 +1,10 @@
 <div class="login-container">
-  <mat-card class="login-content">
+  <mat-card class="login-content" >
     <header class="login-header">
       <mat-toolbar class="login-toolbar" color="primary">Login</mat-toolbar>
     </header>
 
-    <form
+    <form cdkTrapFocus
       [formGroup]="loginForm"
       (ngSubmit)="onSubmit()">
 
@@ -13,16 +13,13 @@
         <mat-icon matPrefix>login</mat-icon>
         <input
           matInput
+          cdkFocusInitial
           #input
           minlength="4"
           maxlength="20"
           type="text"
           placeholder="Login*"
           formControlName="login">
-
-        <!-- <mat-error *ngIf="loginForm.get('login')?.errors?.['required']">
-          This field is requared.
-        </mat-error> -->
 
         <mat-error app-error-messages
           [control]="loginForm.get('login')!"
@@ -48,16 +45,13 @@
           (click)="hide = !hide"
           [attr.aria-label]="'Hide password'"
           [attr.aria-pressed]="hide"
-          (click)="$event.preventDefault()">
+          type="button"
+          (keydown.enter)="$event.preventDefault()">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <mat-hint class="form-hint">
+        <mat-hint class="form-hint" *ngIf="submitted">
           Enter a password of at least eight characters, one uppercase letter, and one number.
         </mat-hint>
-
-        <!-- <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">
-          This field is requared.
-        </mat-error> -->
 
         <mat-error app-error-messages
           [control]="loginForm.get('password')!"

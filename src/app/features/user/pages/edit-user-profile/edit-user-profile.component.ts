@@ -1,11 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { User } from '../../models/user';
 import { AuthUserService } from '../../services/auth-user/auth-user.service';
-import { FormValidationService } from '../../services/form-validation/form-validation.service';
 
 @Component({
   selector: 'app-edit-user-profile',
@@ -21,7 +20,6 @@ export class EditUserProfileComponent implements OnInit {
     public dialog: MatDialog,
     private location: Location,
     private authUserService: AuthUserService,
-    private formValidator: FormValidationService
   ) {}
 
   ngOnInit(): void {
@@ -38,40 +36,15 @@ export class EditUserProfileComponent implements OnInit {
       ]),
       login: new FormControl(this.user?.login, [
         Validators.required,
+        Validators.minLength(4),
       ]),
       password: new FormControl('', [
         Validators.required,
-        this.passwordCustomValidator
+        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/),
       ]),
 
     });
   };
-
-  /**
-   *
-   * [PASSWORD VALIDATOR] Check validation
-   *
-   */
-
-  passwordCustomValidator(control: AbstractControl): ValidationErrors | null {
-    let enteredPassword = control.value;
-    let passwordPattern =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
-    return (!passwordPattern.test(enteredPassword) && enteredPassword) ? { 'requirements': true } : null;
-  }
-
-  getErrorsPassword() {
-    const passwordErrors = this.userProfileForm.get('password')?.errors;
-    return passwordErrors?.['required'] ?
-      'Password is required.' :
-      passwordErrors?.['requirements'] ?
-      'Password must be a combination of lower-case, upper-case, numbers and at least eight characters long.' : '';
-  }
-
-  checkValidation(input: string) {
-    const validation = this.userProfileForm.get(input)?.invalid && (this.userProfileForm.get(input)?.dirty || this.userProfileForm.get(input)?.touched);
-    return validation;
-  }
-
 
   /**
    *

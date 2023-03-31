@@ -39,7 +39,10 @@ export class TaskListComponent implements OnInit {
     private columnService: ColumnService,
   ) {
     this.formColumnTitle = new FormGroup({
-      title: new FormControl('', [Validators.required])
+      title: new FormControl('', [
+        Validators.required,
+        Validators.minLength(1),
+      ]),
     });
   }
 

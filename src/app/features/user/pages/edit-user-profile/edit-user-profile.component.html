@@ -13,6 +13,7 @@
         <mat-icon matPrefix>account_circle</mat-icon>
         <input
           matInput
+          cdkFocusInitial
           #input
           minlength="4"
           maxlength="20"
@@ -24,8 +25,9 @@
 
         <mat-hint align="end" class="form-hint">{{input.value.length}}/20</mat-hint>
 
-        <mat-error *ngIf="userProfileForm.get('name')?.errors?.['required']">
-          This field is required.
+        <mat-error app-error-messages
+          [control]="userProfileForm.get('name')!"
+          class="error-message">
         </mat-error>
 
       </mat-form-field>
@@ -40,9 +42,10 @@
           placeholder="Login*"
           formControlName="login">
 
-        <mat-error *ngIf="userProfileForm.get('login')?.errors?.['required']">
-          This field is required.
-        </mat-error>
+        <mat-error app-error-messages
+            [control]="userProfileForm.get('login')!"
+            class="error-message">
+          </mat-error>
 
       </mat-form-field>
 
@@ -66,15 +69,18 @@
           (click)="hide = !hide"
           [attr.aria-label]="'Hide password'"
           [attr.aria-pressed]="hide"
-          (click)="$event.preventDefault()">
+          type="button"
+          (keydown.enter)="$event.preventDefault()">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
+
         <mat-hint class="form-hint">
           Choose a password of at least eight characters, one uppercase letter and one number.
         </mat-hint>
 
-        <mat-error *ngIf="checkValidation('password')">
-          {{ getErrorsPassword() }}
+        <mat-error app-error-messages
+          [control]="userProfileForm.get('password')!"
+          class="error-message">
         </mat-error>
       </mat-form-field>
 
@@ -85,7 +91,8 @@
             mat-stroked-button
             color="warn"
             (click)="onDeleteProfile()"
-            (click)="$event.preventDefault()">
+            type="button"
+            (keydown.enter)="$event.preventDefault()">
 
             <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
             Delete user
@@ -95,7 +102,8 @@
               mat-stroked-button
               color="primary"
               (click)="onCancel()"
-              (click)="$event.preventDefault()">
+              type="button"
+              (keydown.enter)="$event.preventDefault()">
               Cancel
           </button>
           <button

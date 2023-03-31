@@ -9,10 +9,18 @@
     <mat-form-field>
       <input
         matInput
+        cdkFocusInitial
         [(ngModel)]="title"
         name="title"
-        placeholder={{data.title}}
+        placeholder="Task name*..."
+        minlength="1"
         formControlName="title">
+
+        <mat-error app-error-messages
+          [control]="editTaskForm.get('title')!"
+          class="error-message">
+        </mat-error>
+
     </mat-form-field>
 
     <!-- DESCRIPTION -->
@@ -21,7 +29,7 @@
         matInput
         [(ngModel)]="description"
         name="description"
-        placeholder={{data.description}}
+        placeholder="Description..."
         formControlName="description">
     </mat-form-field>
 
@@ -48,6 +56,7 @@
         color="primary"
         type="submit"
         [mat-dialog-close]="[title, description]"
+        [disabled]="!title"
         cdkFocusInitial>
         Submit
       </button>
