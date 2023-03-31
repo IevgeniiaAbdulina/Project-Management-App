@@ -1,5 +1,5 @@
 header {
-  width: 1200px;
+  width: 100vw;
   position: sticky;
   top: 0;
   margin: 0 auto;
@@ -34,7 +34,7 @@ h1, p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 40%;
+  width: 25%;
 }
 .logo {
   display: flex;
