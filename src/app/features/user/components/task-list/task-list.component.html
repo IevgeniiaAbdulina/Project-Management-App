@@ -17,6 +17,8 @@
                 value="title"
                 placeholder="Title*..."
                 (focus)="onFocusIn($event)"
+                (focusout)="onFocusOutEvent($event)"
+                (blur)="onBlur()"
                 [ngClass]="{'isselected' : isEdited}">
 
               <span class="material-icons reorder">reorder</span>

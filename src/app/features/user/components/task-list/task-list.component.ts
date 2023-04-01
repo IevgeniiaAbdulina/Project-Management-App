@@ -71,6 +71,16 @@ export class TaskListComponent implements OnInit {
     this.columnTitle = this.formColumnTitle.controls['title'].value;
   }
 
+  onBlur() {
+    this.formColumnTitle.controls['title'].disable();
+    this.formColumnTitle.controls['title'].enable();
+  }
+
+  onFocusOutEvent(event: any) {
+    this.onBlur();
+    this.onFormClose();
+  }
+
   onFormSubmit(event: any) {
     this.isEdited = false;
     event.preventDefault();
@@ -84,6 +94,8 @@ export class TaskListComponent implements OnInit {
       this.column?.boardId ?? '',
       this.column?._id ?? '',
       updatedColumn)
+
+    this.onFocusOutEvent(event);
   }
 
   onFormClose() {
