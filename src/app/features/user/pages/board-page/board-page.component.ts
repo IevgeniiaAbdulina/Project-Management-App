@@ -19,8 +19,6 @@ export class BoardPageComponent implements OnInit  {
   public board?: Board;
   public columnList: ColumnItem[] = [];
 
-  countColumnOreder = 0;
-
   constructor(
     public dialog: MatDialog,
     private columnService: ColumnService,
@@ -66,14 +64,11 @@ export class BoardPageComponent implements OnInit  {
    */
 
   onDeleteBoard(): void {
-    console.log('Confirm Delete Board modal is open');
     this.dialog.open(ConfirmationModalComponent, {
       data: {
         innerDialogText: 'Do you want to delete this board?'
       }
     }).afterClosed().subscribe((result) => {
-      console.log(`Confirmation result: ${result}`);
-
       if(result) {
         // delete a board
         this.boardService.deleteBoardUpdatePage(this.board?._id ?? '');
@@ -91,7 +86,7 @@ export class BoardPageComponent implements OnInit  {
 
     const newColumn: ColumnItem = {
       title: '',
-      order: this.countColumnOreder,
+      order: this.columnList.length,
     }
 
     const dialogRef = this.dialog.open(ModalFormComponent, {
@@ -112,7 +107,6 @@ export class BoardPageComponent implements OnInit  {
           this.columnService.getColumnsInBoard(column.boardId ?? '');
         });
 
-      this.countColumnOreder++;
     })
   }
 
@@ -138,7 +132,6 @@ export class BoardPageComponent implements OnInit  {
     this.columnService.updateColumnById(this.board?._id ?? '', event.item.data._id, updatedColumn)
       .subscribe((col) => {
         this.columnList = this.updateOrders(this.columnList)
-        // console.log('AFTER REORDERING, SUPER NEW. REALLY: ', this.columnList)
 
         this.columnService.updateSetOfColumns(this.columnList)
       })

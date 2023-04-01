@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardService } from '../../services/board/board.service';
 import { Board } from '../../models/board';
-import { AuthUserService } from '../../services/auth-user/auth-user.service';
 import { Router } from '@angular/router';
 import { ColumnService } from '../../services/column/column.service';
 import { User } from '../../models/user';
@@ -18,7 +17,6 @@ export class DashboardPageComponent implements OnInit {
   constructor(
     public boardService: BoardService,
     private columnService: ColumnService,
-    private userService: AuthUserService,
     private router: Router,
   ) {}
 
@@ -50,7 +48,6 @@ export class DashboardPageComponent implements OnInit {
   }
 
   onBoardCardClick(item: Board) {
-    console.log('[onBoardCardClick] --> ', item._id)
     const boardId = item._id ?? '';
     this.columnService.getColumnsInBoard(boardId);
 

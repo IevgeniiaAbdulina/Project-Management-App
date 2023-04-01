@@ -39,7 +39,7 @@ export class BoardService {
 
   /**
    *
-   * DELETE Board
+   * DELETE Board and Update page
    * ----------------------------
    */
     deleteBoardUpdatePage(boardId: string) {
