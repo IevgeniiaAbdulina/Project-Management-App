@@ -56,8 +56,7 @@ export class LoginPageComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: () => {
-          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'users/dashboard';
-          this.router.navigateByUrl(returnUrl);
+          // do nothing...
         },
         error: error => {
           this.submitted = false;

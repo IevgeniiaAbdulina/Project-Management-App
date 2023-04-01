@@ -47,6 +47,11 @@ export class AuthUserService {
     this.userSubject.next(user);
   }
 
+  loadToken(token: TokenData) {
+    localStorage.setItem('token', JSON.stringify(token));
+        this.tokenSubject.next(token);
+  }
+
   /**
    *
    * UPDATE User data
@@ -91,7 +96,6 @@ export class AuthUserService {
         this.tokenSubject.next(token);
 
         this.getUserByLogin(login);
-        return token;
       }))
   }
 
@@ -108,7 +112,6 @@ export class AuthUserService {
       const currentUser = users.find(u => u.login === login)
       if(currentUser != undefined) {
         localStorage.setItem('user', JSON.stringify(currentUser));
-        console.log('getUserByLogin, got user: ', currentUser)
         this.userSubject.next(currentUser);
       }
     });

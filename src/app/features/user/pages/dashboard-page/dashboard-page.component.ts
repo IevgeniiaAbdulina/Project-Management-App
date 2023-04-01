@@ -13,6 +13,7 @@ import { User } from '../../models/user';
 })
 export class DashboardPageComponent implements OnInit {
   public boardList?: Board[]
+  private user?: User;
 
   constructor(
     public boardService: BoardService,
@@ -36,17 +37,15 @@ export class DashboardPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.user = this.loadFromLocalStorage('user');
+
     this.boardService.boardList.subscribe(boards => {
       this.boardList = boards ?? [];
-    })
+    });
 
-    const user = this.loadFromLocalStorage('user') as User | null;
-    this.userService.user.subscribe(u => {
-      if(user != null) {
-        this.boardService.getBoardsByUserId(u?._id).subscribe(boards => {
-          this.boardService.boardListSubject.next(boards)
-        })
-      }
+    this.boardService.getBoardsByUserId(this.user?._id).subscribe(boards => {
+      this.boardList = boards;
+      this.boardService.boardListSubject.next(boards);
     });
   }
 

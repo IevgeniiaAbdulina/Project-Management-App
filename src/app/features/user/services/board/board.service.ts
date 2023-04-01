@@ -33,6 +33,10 @@ export class BoardService {
     return this.boardSubject.value;
   }
 
+  loadBoards(boards: Board[]) {
+    this.boardListSubject.next(boards);
+  }
+
   /**
    *
    * DELETE Board
