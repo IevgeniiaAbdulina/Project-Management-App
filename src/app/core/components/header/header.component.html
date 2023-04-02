@@ -68,7 +68,8 @@
       <!-- unexpired token | user is authorised -->
 
       <div class="nav-auth" *ngIf="authUserService.user | async as user">
-        <p class="user-name">{{ user.name }}</p>
+        <!-- <p class="user-name">{{ user.name }}</p> -->
+        <p class="user-name">{{ userName }}</p>
 
         <button mat-icon-button
           [matMenuTriggerFor]="appMenu"

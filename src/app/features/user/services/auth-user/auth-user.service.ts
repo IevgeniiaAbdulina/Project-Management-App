@@ -44,6 +44,7 @@ export class AuthUserService {
    */
   loadUser(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('name', JSON.stringify(user.name));
     this.userSubject.next(user);
   }
 

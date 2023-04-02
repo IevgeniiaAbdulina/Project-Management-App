@@ -17,6 +17,7 @@ import { ModalFormComponent } from 'src/app/shared/components/modal-form/modal-f
 })
 export class HeaderComponent implements OnInit {
   public user?: User;
+  public userName?: string;
 
   colorControl = new FormControl('accent' as ThemePalette);
   searchForm = new FormGroup({
@@ -38,6 +39,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authUserService.userValue as User;
+
+    setInterval(() => {
+      this.userName = JSON.parse(localStorage.getItem('name')!);
+    }, 1000)
   }
 
   onSearchSubmit() {
