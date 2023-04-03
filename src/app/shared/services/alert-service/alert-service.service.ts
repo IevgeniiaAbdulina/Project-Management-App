@@ -17,14 +17,15 @@ export class AlertService {
     private _snackBar: MatSnackBar,
   ) {}
 
-  private openSnackBar(message: string, action: string) {
+  private openSnackBar(message: string, action?: string, panelClass?: string) {
     this._snackBar.open(message, action, {
       duration: this.durationInSeconds * 1000,
+      panelClass: panelClass,
     });
   }
 
-  public alertMessage(message: string) {
-    return this.openSnackBar(message, 'close')
+  public alertMessage(message: string, action?: string, panelClass?: string) {
+    return this.openSnackBar(message, action, panelClass)
   }
 
   // eneble subscribing to alerts observable

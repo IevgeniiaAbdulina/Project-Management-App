@@ -10,6 +10,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 import { ColumnService } from '../../services/column/column.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
+import { AlertService } from 'src/app/shared/services/alert-service/alert-service.service';
 
 @Component({
   selector: 'app-task-list',
@@ -37,6 +38,7 @@ export class TaskListComponent implements OnInit {
     private taskService: TaskService,
     private userService: AuthUserService,
     private columnService: ColumnService,
+    private alertService: AlertService
   ) {
     this.formColumnTitle = new FormGroup({
       title: new FormControl('', [
@@ -146,7 +148,16 @@ export class TaskListComponent implements OnInit {
         users: users
       }
       this.taskService.createTask(this.boardId, this.columnId, newTask)
-        .subscribe(() => this.getTasks())
+        .subscribe({
+          next: () => {
+            this.alertService.alertMessage('Task has been created', 'close', 'alert-success');
+            this.getTasks()
+          },
+          error: err => {
+            console.error(err);
+            this.alertService.alertMessage('Something went wrong!', 'close', 'alert-error')
+          }
+        })
     })
 
     this.counterOrder++;

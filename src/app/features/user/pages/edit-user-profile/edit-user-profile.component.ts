@@ -75,7 +75,7 @@ export class EditUserProfileComponent implements OnInit {
         .subscribe({
           next: user => {
             console.log('Get updated user', user)
-            this.alertService.alertMessage('Changes saved');
+            this.alertService.alertMessage('Changes saved', 'close', 'alert-success');
 
             this.authUserService.loadUser(user);
             this.location.back();
@@ -83,7 +83,7 @@ export class EditUserProfileComponent implements OnInit {
           error: error => {
             console.log('[ERROR]  in EDIT USER page --> ', error)
 
-            this.alertService.alertMessage('Something went wrong');
+            this.alertService.alertMessage('Something went wrong', 'close', 'alert-error');
           }
         })
     }
@@ -104,6 +104,7 @@ export class EditUserProfileComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       this.authUserService.deleteUser(this.user?._id ?? '').subscribe(() => {
         console.log('User has been REMOVED from DB');
+        this.alertService.alertMessage('User has been removed', 'close', 'alert-success');
       })
     })
   }

@@ -54,14 +54,14 @@ export class SignUpPageComponent implements OnInit{
       .pipe(first())
       .subscribe({
         next: () => {
-          this.alertService.alertMessage('Registration successful!');
+          this.alertService.alertMessage('Registration successful!', 'close', 'alert-success');
 
           this.router.navigate(['/login'], { relativeTo: this.route });
         },
         error: error => {
           console.log('[ERROR]  in SIGN UP page --> ', error)
 
-          this.alertService.alertMessage('Something went wrong');
+          this.alertService.alertMessage('Something went wrong', 'close', 'alert-error');
         }
       })
 

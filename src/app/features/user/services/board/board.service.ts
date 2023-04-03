@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Board } from '../../models/board';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AlertService } from 'src/app/shared/services/alert-service/alert-service.service';
 
 
 @Injectable({
@@ -17,6 +18,7 @@ export class BoardService {
 
   constructor(
     private http: HttpClient,
+    private alertService: AlertService
   ) {
     this.boardListSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('boards')!));
     this.boardList = this.boardListSubject.asObservable();
@@ -43,9 +45,17 @@ export class BoardService {
    * ----------------------------
    */
     deleteBoardUpdatePage(boardId: string) {
-      this.deleteBoardById(boardId).subscribe(resp => {
-        const boardsSet = this.boardListValue?.filter(board => board._id !== resp._id);
-        this.boardListSubject.next(boardsSet ?? [])
+      this.deleteBoardById(boardId).subscribe({
+        next: resp => {
+          this.alertService.alertMessage('Board has been deleted', 'close', 'alert-success');
+
+          const boardsSet = this.boardListValue?.filter(board => board._id !== resp._id);
+          this.boardListSubject.next(boardsSet ?? [])
+        },
+        error: err => {
+          console.log(err)
+          this.alertService.alertMessage('Cannot delete this board', 'close', 'alert-error');
+        }
       })
     }
 

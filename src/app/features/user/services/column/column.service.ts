@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ColumnItem } from '../../models/column';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { AlertService } from 'src/app/shared/services/alert-service/alert-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,8 @@ export class ColumnService {
 
   constructor(
     private http: HttpClient,
+    private alertService: AlertService
+
   ) {
     this.columnListSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('columns')!));
     this.columnList = this.columnListSubject.asObservable();
@@ -57,16 +60,24 @@ export class ColumnService {
 
   /**
    *
-   * DELETE Column
+   * DELETE Column and update page
    * ----------------------------
    */
 
     onDeleteColumnUpdatePage(boardId: string, columnId: string) {
-      this.deleteColumnById(boardId, columnId).subscribe((res) => {
-        const columnSet = this.columnListValue?.filter(col => col._id !== res._id) ?? [];
-        const updatedColumnSet = this.updateOrders(columnSet);
+      this.deleteColumnById(boardId, columnId).subscribe({
+        next: (res) => {
+          this.alertService.alertMessage('Column has been deleted', 'close', 'alert-success');
 
-        this.updateSetOfColumns(updatedColumnSet);
+          const columnSet = this.columnListValue?.filter(col => col._id !== res._id) ?? [];
+          const updatedColumnSet = this.updateOrders(columnSet);
+
+          this.updateSetOfColumns(updatedColumnSet);
+        },
+        error: err => {
+          console.log(err)
+          this.alertService.alertMessage('Cannot delete this column', 'close', 'alert-error');
+        }
       })
     }
     // ----------------------------
@@ -146,13 +157,10 @@ export class ColumnService {
       }
     });
 
-    console.log("\t --> items to send: ", requestBody);
-
     this.http.patch<any[]>('columnsSet', requestBody)
-    .subscribe( columns => {
-        console.log('RESPONSE updateSetOfColumns COLUMN: ', columns)
-      this.columnListSubject.next(columns);
-    })
+      .subscribe( columns => {
+        this.columnListSubject.next(columns);
+      })
   }
 
   // POST

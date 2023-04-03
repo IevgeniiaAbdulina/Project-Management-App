@@ -21,3 +21,18 @@ app-root {
   flex-direction: column;
 }
 
+.mat-mdc-snack-bar-container {
+  &.alert-success {
+    // --mdc-snackbar-container-color: #2196f3;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #76FF03;
+  }
+}
+
+.mat-mdc-snack-bar-container {
+  &.alert-error {
+    // --mdc-snackbar-container-color: #2196f3;
+    --mat-mdc-snack-bar-button-color: #fff;
+    --mdc-snackbar-supporting-text-color: #FF9800;
+  }
+}

@@ -56,12 +56,12 @@ export class LoginPageComponent implements OnInit {
       .subscribe({
         next: () => {
           // do nothing...
-          this.alertService.alertMessage('Login success!');
+          this.alertService.alertMessage('Login success!', 'close', 'alert-success');
         },
         error: error => {
           console.log('[ERROR]  in LOGIN page --> ', error)
 
-          this.alertService.alertMessage('Something went wrong');
+          this.alertService.alertMessage('Something went wrong', 'close', 'alert-error');
           this.submitted = false;
         }
       })

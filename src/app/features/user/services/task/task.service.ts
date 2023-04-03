@@ -65,13 +65,13 @@ export class TaskService {
     this.deleteTaskById(boardId, columnId, taskId)
       .subscribe({
         next: () => {
-          this.alertService.alertMessage('Task has been deleted');
+          this.alertService.alertMessage('Task has been deleted', 'close', 'alert-success');
 
           this.getTasksInColumn(boardId, columnId);
         },
         error: err => {
           console.log(err)
-          this.alertService.alertMessage('Cannot delete task');
+          this.alertService.alertMessage('Cannot delete task', 'close', 'alert-error');
         }
       })
   }
@@ -89,14 +89,14 @@ export class TaskService {
           tasksInColumn.splice(indexOfOldTask, 1, task)
           this.tasksMap.set(columnId, tasksInColumn);
 
-          this.alertService.alertMessage('Task successfully updated');
+          this.alertService.alertMessage('Task successfully updated', 'close', 'alert-success');
         }
 
         this.dataHasBeenFetchedSubject.next(Date.now());
       },
       error: err => {
         console.log(err)
-        this.alertService.alertMessage('Cannot update this task');
+        this.alertService.alertMessage('Cannot update this task', 'close', 'alert-error');
       }
     });
   }
