@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { User } from '../../models/user';
 import { AuthUserService } from '../../services/auth-user/auth-user.service';
+import { AlertService } from 'src/app/shared/services/alert-service/alert-service.service';
 
 @Component({
   selector: 'app-edit-user-profile',
@@ -20,6 +21,7 @@ export class EditUserProfileComponent implements OnInit {
     public dialog: MatDialog,
     private location: Location,
     private authUserService: AuthUserService,
+    private alertService: AlertService,
   ) {}
 
   ngOnInit(): void {
@@ -70,10 +72,19 @@ export class EditUserProfileComponent implements OnInit {
 
     if(this.user !== null && this.user !== undefined) {
       this.authUserService.updateUserById(this.user?._id ?? '', updatedUserData)
-        .subscribe(user => {
-          console.log('Get updated user', user)
-          this.authUserService.loadUser(user);
-          this.location.back();
+        .subscribe({
+          next: user => {
+            console.log('Get updated user', user)
+            this.alertService.alertMessage('Changes saved');
+
+            this.authUserService.loadUser(user);
+            this.location.back();
+          },
+          error: error => {
+            console.log('[ERROR]  in EDIT USER page --> ', error)
+
+            this.alertService.alertMessage('Something went wrong');
+          }
         })
     }
   }

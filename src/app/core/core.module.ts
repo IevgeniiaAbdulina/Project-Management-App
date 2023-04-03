@@ -14,7 +14,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiInterceptor } from './interceptors/api/api.interceptor';
 import { AuthInterceptor } from './interceptors/auth/auth.interceptor';
 import { LoadingProgressBarComponent } from './components/loading-progress-bar/loading-progress-bar.component';
-import { AlertComponent } from './components/alert/alert/alert.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -22,12 +22,11 @@ import { AlertComponent } from './components/alert/alert/alert.component';
     FooterComponent,
     NotFoundPageComponent,
     LoadingProgressBarComponent,
-    AlertComponent,
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    AlertComponent,
+    MatSnackBarModule
   ],
   imports: [
     RouterModule,
@@ -35,7 +34,8 @@ import { AlertComponent } from './components/alert/alert/alert.component';
     MaterialDesignModule,
     ReactiveFormsModule,
     MatTooltipModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [
     {

@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthUserService } from 'src/app/features/user/services/auth-user/auth-user.service';
 import { first } from 'rxjs/operators';
+import { AlertService } from 'src/app/shared/services/alert-service/alert-service.service';
 
 @Component({
   selector: 'app-sign-up-page',
@@ -22,6 +23,7 @@ export class SignUpPageComponent implements OnInit{
     private authUserService: AuthUserService,
     private route: ActivatedRoute,
     private router: Router,
+    private alertService: AlertService,
   ) {}
 
   ngOnInit(): void {
@@ -52,13 +54,14 @@ export class SignUpPageComponent implements OnInit{
       .pipe(first())
       .subscribe({
         next: () => {
-          // console.log('REGISTER RESPONCE: ',value);
-          // this.authUserService.saveUser(value);
+          this.alertService.alertMessage('Registration successful!');
 
           this.router.navigate(['/login'], { relativeTo: this.route });
         },
         error: error => {
-          console.error('Error', error);
+          console.log('[ERROR]  in SIGN UP page --> ', error)
+
+          this.alertService.alertMessage('Something went wrong');
         }
       })
 

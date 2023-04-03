@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthUserService } from 'src/app/features/user/services/auth-user/auth-user.service';
 
 import { first } from 'rxjs/operators';
-import { AlertService } from 'src/app/features/user/services/alert-service/alert-service.service';
+import { AlertService } from 'src/app/shared/services/alert-service/alert-service.service';
 
 @Component({
   selector: 'app-login-page',
@@ -50,17 +50,19 @@ export class LoginPageComponent implements OnInit {
   get f() { return this.loginForm.controls}
 
   onSubmit() {
-    this.alertService.clear();
     if(this.loginForm.invalid) return;
     this.authUserService.login(this.f['login'].value, this.f['password'].value)
       .pipe(first())
       .subscribe({
         next: () => {
           // do nothing...
+          this.alertService.alertMessage('Login success!');
         },
         error: error => {
+          console.log('[ERROR]  in LOGIN page --> ', error)
+
+          this.alertService.alertMessage('Something went wrong');
           this.submitted = false;
-          this.alertService.error(error);
         }
       })
   }

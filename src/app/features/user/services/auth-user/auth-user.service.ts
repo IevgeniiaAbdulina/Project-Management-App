@@ -50,7 +50,7 @@ export class AuthUserService {
 
   loadToken(token: TokenData) {
     localStorage.setItem('token', JSON.stringify(token));
-        this.tokenSubject.next(token);
+    this.tokenSubject.next(token);
   }
 
   /**
@@ -63,8 +63,7 @@ export class AuthUserService {
     this.updateUserById(id, updatedUser).subscribe((user) => {
       console.log('[UPDATE USER DATA]', user);
 
-      localStorage.setItem('user', JSON.stringify(user));
-      this.userSubject.next(user);
+      this.loadUser(user);
     })
   }
   // -------------------------------
@@ -93,9 +92,7 @@ export class AuthUserService {
     return this.http.post<TokenData>('auth/signin', { login, password })
       .pipe(map(token => {
 
-        localStorage.setItem('token', JSON.stringify(token));
-        this.tokenSubject.next(token);
-
+        this.loadToken(token)
         this.getUserByLogin(login);
       }))
   }
@@ -112,8 +109,8 @@ export class AuthUserService {
     this.getAllUsers().subscribe(users => {
       const currentUser = users.find(u => u.login === login)
       if(currentUser != undefined) {
-        localStorage.setItem('user', JSON.stringify(currentUser));
-        this.userSubject.next(currentUser);
+
+        this.loadUser(currentUser);
       }
     });
   }
@@ -170,7 +167,6 @@ export class AuthUserService {
   deleteUser(id: string) {
     return this.http.delete(`users/${id}`)
       .pipe(map(x => {
-        // todo:  // auto logout if the logged in user deleted their own record
         this.logout();
         return x;
       }))

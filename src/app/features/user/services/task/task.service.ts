@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TaskItem } from '../../models/task';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, map } from 'rxjs';
+import { AlertService } from 'src/app/shared/services/alert-service/alert-service.service';
 
 @Injectable()
 
@@ -22,6 +23,7 @@ export class TaskService {
   constructor(
     private http: HttpClient,
     public dialog: MatDialog,
+    private alertService: AlertService
   ) {
     this.taskListSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('tasks')!));
     this.taskList = this.taskListSubject.asObservable();
@@ -60,26 +62,42 @@ export class TaskService {
   // ----------------------------
 
   onDeleteTaskUpdatePage(boardId: string, columnId: string, taskId: string) {
-    this.deleteTaskById(boardId, columnId, taskId).subscribe(() => {
-      this.getTasksInColumn(boardId, columnId)
-    })
+    this.deleteTaskById(boardId, columnId, taskId)
+      .subscribe({
+        next: () => {
+          this.alertService.alertMessage('Task has been deleted');
+
+          this.getTasksInColumn(boardId, columnId);
+        },
+        error: err => {
+          console.log(err)
+          this.alertService.alertMessage('Cannot delete task');
+        }
+      })
   }
 
   updateTask(boardId: string, columnId: string, taskId: string, taskToUpdate: TaskItem) {
-    this.updateTaskById(boardId, columnId, taskId, taskToUpdate).subscribe((task) => {
-      console.log('[RES] UPDATED TASKS >>>>> : ', task);
+    this.updateTaskById(boardId, columnId, taskId, taskToUpdate).subscribe({
+      next: (task) => {
+        console.log('[RES] UPDATED TASKS >>>>> : ', task);
 
-      let tasksInColumn = this.tasksMap.get(columnId) ?? [];
-      let oldTask = tasksInColumn.find((t) => t._id === taskId);
-      if(oldTask != undefined) {
-        const indexOfOldTask = tasksInColumn.indexOf(oldTask);
-        //replace old item by new one
-        tasksInColumn.splice(indexOfOldTask, 1, task)
+        let tasksInColumn = this.tasksMap.get(columnId) ?? [];
+        let oldTask = tasksInColumn.find((t) => t._id === taskId);
+        if(oldTask != undefined) {
+          const indexOfOldTask = tasksInColumn.indexOf(oldTask);
+          //replace old item by new one
+          tasksInColumn.splice(indexOfOldTask, 1, task)
+          this.tasksMap.set(columnId, tasksInColumn);
 
-        this.tasksMap.set(columnId, tasksInColumn);
+          this.alertService.alertMessage('Task successfully updated');
+        }
+
+        this.dataHasBeenFetchedSubject.next(Date.now());
+      },
+      error: err => {
+        console.log(err)
+        this.alertService.alertMessage('Cannot update this task');
       }
-
-      this.dataHasBeenFetchedSubject.next(Date.now());
     });
   }
 
