@@ -9,19 +9,38 @@
             (ngSubmit)="onFormSubmit"
             (submit)="onFormSubmit($event)">
             <div class="wrapper">
+              <span class="material-icons reorder">reorder</span>
+
               <input
                 matInput
-                cdkFocusInitial
                 class="column-title"
                 formControlName="title"
                 value="title"
                 placeholder="Title*..."
-                (focus)="onFocusIn($event)"
-                (focusout)="onFocusOutEvent($event)"
-                (blur)="onBlur()"
                 [ngClass]="{'isselected' : isEdited}">
 
-              <span class="material-icons reorder">reorder</span>
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Edit column title icon-button menu"
+                (click)="$event.preventDefault()"
+                (keydown.enter)="$event.preventDefault()">
+
+                <mat-icon class="edit-btn menu">more_vert</mat-icon>
+              </button>
+
+              <mat-menu #menu="matMenu" xPosition="after">
+                <button mat-menu-item (click)="onEditBtnClick()">
+                  <mat-icon class="edit-btn edit">edit</mat-icon>
+                  <span>Edit title</span>
+                </button>
+                <button (click)="onDeleteColumn()"
+                  mat-menu-item
+                  color="warn">
+                  <mat-icon class="edit-btn delete">delete</mat-icon>
+                  <span class="delete">Delete column</span>
+                </button>
+              </mat-menu>
             </div>
 
             <mat-error app-error-messages *ngIf="isEdited"
@@ -29,16 +48,7 @@
               class="error-message">
             </mat-error>
 
-            <div *ngIf="isEdited"
-              class="actions">
-              <button class="actions-left"
-                mat-stroked-button
-                color="warn"
-                type="button"
-                (keydown.enter)="$event.preventDefault()"
-                (click)="onDeleteColumn()">
-                Delete
-              </button>
+            <div *ngIf="isEdited" class="actions">
               <div class="actions-right">
                 <button
                   mat-stroked-button

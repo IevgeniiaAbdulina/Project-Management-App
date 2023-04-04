@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { TaskItem } from '../../models/task';
 import { TaskService } from '../../services/task/task.service';
 import { ColumnItem, ColumnTitle } from '../../models/column';
@@ -61,6 +61,7 @@ export class TaskListComponent implements OnInit {
     });
 
     this.getTasks();
+    this.formColumnTitle.controls['title'].disable();
   }
 
   /**
@@ -68,20 +69,13 @@ export class TaskListComponent implements OnInit {
    * EDIT Column Title
    * ----------------------------
    */
-  onFocusIn(event: any) {
+
+  onEditBtnClick() {
     this.isEdited = true;
+    this.formColumnTitle.controls['title'].enable();
     this.columnTitle = this.formColumnTitle.controls['title'].value;
   }
 
-  onBlur() {
-    this.formColumnTitle.controls['title'].disable();
-    this.formColumnTitle.controls['title'].enable();
-  }
-
-  onFocusOutEvent(event: any) {
-    this.onBlur();
-    this.onFormClose();
-  }
 
   onFormSubmit(event: any) {
     this.isEdited = false;
@@ -97,12 +91,14 @@ export class TaskListComponent implements OnInit {
       this.column?._id ?? '',
       updatedColumn)
 
-    this.onFocusOutEvent(event);
+    this.isEdited = false;
+    this.formColumnTitle.controls['title'].disable();
   }
 
   onFormClose() {
     this.isEdited = false;
-    this.formColumnTitle?.controls['title'].setValue(this.columnTitle)
+    this.formColumnTitle?.controls['title'].setValue(this.columnTitle);
+    this.formColumnTitle.controls['title'].disable();
   }
   // ----------------------------
 
@@ -112,7 +108,7 @@ export class TaskListComponent implements OnInit {
    * ----------------------------
    */
   onDeleteColumn() {
-    console.log('DELETE COLUMN button has been clicked');
+    console.log('[DELETE] button has been clicked');
     if(!this.column) return;
 
     this.dialog.open(ConfirmationModalComponent, {
@@ -237,7 +233,7 @@ export class TaskListComponent implements OnInit {
         event.container.id,
         event.item.data._id,
         updatedTask).subscribe((resp) => {
-          // console.log('[MOVE] UPDATED TASKS >>>>> : ', resp)
+          console.log('[MOVE] UPDATED TASKS >>>>> : ', resp)
 
           this.updateTaskMap();
           this.taskService.updateSetOfTasks();
@@ -264,7 +260,7 @@ export class TaskListComponent implements OnInit {
         event.container.id,
         event.item.data._id,
         updatedTask).subscribe((resp) => {
-          // console.log('[TRANSFER] UPDATED TASKS >>>>> : ', resp)
+          console.log('[TRANSFER] UPDATED TASKS >>>>> : ', resp)
 
           this.updateTaskMap();
           this.taskService.updateSetOfTasks();

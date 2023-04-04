@@ -11,9 +11,6 @@ export class ColumnService {
   public columnListSubject: BehaviorSubject<ColumnItem[] | null>;
   public columnList: Observable<ColumnItem[] | null>;
 
-  public columnSubject: BehaviorSubject<ColumnItem | null>;
-  public column: Observable<ColumnItem | null>;
-
   constructor(
     private http: HttpClient,
     private alertService: AlertService
@@ -21,22 +18,30 @@ export class ColumnService {
   ) {
     this.columnListSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('columns')!));
     this.columnList = this.columnListSubject.asObservable();
-
-    this.columnSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('column')!));
-    this.column = this.columnSubject.asObservable();
   }
 
   public get columnListValue() {
     return this.columnListSubject.value;
   }
 
-  public get columnValue() {
-    return this.columnListSubject.value;
-  }
-
   updateColumnOnPage(boardId: string, columnId: string, column: any) {
-    this.updateColumnById(boardId, columnId, column).subscribe((column) => {
-      this.columnSubject.next(column);
+    this.updateColumnById(boardId, columnId, column).subscribe({
+      next: (column) => {
+        console.log('[SUBMIT EDIT COLUMN] ======== >', column);
+        this.alertService.alertMessage('Column update success', 'close', 'alert-success');
+
+        let oldColumns = this.columnListValue ?? [];
+        let oldCol = oldColumns.find( col => col._id == columnId)
+
+        if(oldCol != undefined) {
+          oldCol.title = column.title
+          this.columnListSubject.next(oldColumns)
+        }
+      },
+      error: err => {
+        console.log(err)
+        this.alertService.alertMessage('Cannot update this column', 'close', 'alert-error');
+      }
     })
   }
 

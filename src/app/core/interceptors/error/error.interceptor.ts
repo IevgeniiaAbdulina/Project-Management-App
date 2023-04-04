@@ -15,7 +15,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   constructor(private authUserService: AuthUserService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('ErrorInterceptor Interceptore works!');
+    // console.log('ErrorInterceptor Interceptore works!');
 
     return next.handle(request).pipe(catchError((err) => {
       if([401, 403].includes(err.status) && this.authUserService.userValue) {

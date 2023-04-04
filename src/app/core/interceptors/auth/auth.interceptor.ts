@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private auth: AuthUserService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('AuthInterceptor Interceptore works!');
+    // console.log('AuthInterceptor Interceptore works!');
 
     let tokenData = this.auth.tokenValue?.token ?? '';
 

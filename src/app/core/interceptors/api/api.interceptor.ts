@@ -15,7 +15,7 @@ export class ApiInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    console.log('ApiInterceptor Interceptore works!');
+    // console.log('ApiInterceptor Interceptore works!');
     // return next.handle(request);
     return next.handle(request.clone({
       url: `${environment.API_URL}/${request.url}`
