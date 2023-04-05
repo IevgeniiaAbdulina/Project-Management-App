@@ -1,3 +1,8 @@
+section {
+  height: calc(100vh - 84px);
+  padding: 0 48px;
+  margin-top: 16px;
+}
 .section-header {
   display: flex;
   flex-direction: row;

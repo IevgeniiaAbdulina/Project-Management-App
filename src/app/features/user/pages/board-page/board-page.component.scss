@@ -1,8 +1,19 @@
+section {
+  height: calc(100vh - 84px);
+  padding: 0 48px;
+  margin-top: 16px;
+}
+.section-content {
+  button {
+    margin: 8px 0;
+  }
+}
+
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
 }
 .section-nav {
   display: flex;
@@ -23,8 +34,10 @@
   flex-direction: row;
   column-gap: 16px;
 
-  height: calc(100vh - 340px);
-  margin-top: 50px;
+  // height: calc(100vh - 340px);
+  height: calc(100vh - 205px);
+
+  margin-top: 8px;
   overflow-x: scroll;
   overflow-y: hidden;
 }
