@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './core/interceptors/error/error.interceptor';
 import { AuthGuard } from './core/guards/auth.guard';
+import { APP_BASE_HREF } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AuthGuard } from './core/guards/auth.guard';
   providers: [
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: APP_BASE_HREF, useValue: '/' }
   ],
   bootstrap: [
     AppComponent,
