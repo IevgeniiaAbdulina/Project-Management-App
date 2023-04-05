@@ -9,24 +9,26 @@
           [routerLink]="['users/dashboard']">
           <mat-icon class="dashboard-ic">dashboard</mat-icon>
         </a>
-        <h2>Boards</h2>
+        <h2 i18n>Boards</h2>
       </div>
       <div class="logo"
         *ngIf="!(authUserService.user | async)"
         [routerLink]="['']">
         <img mat-card-sm-image src="../../../../assets/img/logo-img.svg" alt="Logo image" class="logo-img">
-        <h1>PM App</h1>
+        <h1  i18n>PM App</h1>
       </div>
 
       <!-- Create a New Board -->
 
-      <button mat-raised-button
+      <button i18n mat-raised-button
         *ngIf="authUserService.user | async"
         class="create-board-btn"
         color="accent"
         (click)="openDialog()"
         [disabled]="false">
-        Create New Board
+
+        <mat-icon aria-hidden="false" fontIcon="add"></mat-icon>
+        New Board
       </button>
     </div>
 
@@ -53,12 +55,12 @@
 
       <div class="nav-auth" *ngIf="!(authUserService.user | async)">
         <div class="login">
-          <a mat-raised-button [routerLink]="['login']"
+          <a i18n mat-raised-button [routerLink]="['login']"
           class="login-btn"
           [disabled]="false">Login</a>
         </div>
         <div class="sign-up">
-          <a mat-raised-button [routerLink]="['signup']"
+          <a i18n mat-raised-button [routerLink]="['signup']"
             color="accent"
             [disabled]="false">Sign up</a>
 
@@ -80,14 +82,14 @@
 
         <mat-menu #appMenu="matMenu" xPosition="before">
           <ng-template matMenuContent let-name="name">
-            <a mat-menu-item
+            <a i18n mat-menu-item
               (click)="onEditUserProfileClick()"
               routerLinkActive="active"
               [routerLinkActiveOptions]="{exact: true}">
               Edit profile
             </a>
             <mat-divider></mat-divider>
-            <button mat-menu-item (click)="onLogOut()" routerLinkActive="active">Log out {{ user.name }}</button>
+            <button i18n mat-menu-item (click)="onLogOut()" routerLinkActive="active">Log out {{ user.name }}</button>
           </ng-template>
         </mat-menu>
 
@@ -105,15 +107,24 @@
           <mat-icon>language</mat-icon>
         </button>
 
-        <mat-menu #langMenu="matMenu" xPosition="before">
+        <!-- <mat-menu #langMenu="matMenu" xPosition="before">
           <ng-template matMenuContent let-en="en" let-pl="pl">
-            <button mat-menu-item disabled>
-              <span>Choose a language</span>
-            </button>
+            <a mat-menu-item href="/en-US/">{{en}}</a>
             <mat-divider></mat-divider>
-            <button mat-menu-item>{{en}}</button>
-            <mat-divider></mat-divider>
-            <button mat-menu-item>{{pl}}</button>
+            <a mat-menu-item href="/pl/">{{pl}}</a>
+          </ng-template>
+        </mat-menu> -->
+
+        <mat-menu #langMenu="matMenu" xPosition="before">
+          <ng-template matMenuContent >
+            <ul>
+              <li *ngFor="let locale of localesList">
+                <a mat-menu-item href="/{{locale.code}}/">{{locale.label}}</a>
+              </li>
+            </ul>
+            <!-- <a mat-menu-item href="/{{locale.code}}/">{{locale.label}}</a> -->
+            <!-- <mat-divider></mat-divider>
+            <a mat-menu-item href="/{{locale.code}}/">{{locale.label}}</a> -->
           </ng-template>
         </mat-menu>
 

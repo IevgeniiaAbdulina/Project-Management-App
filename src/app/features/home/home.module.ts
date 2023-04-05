@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ErrorMessagesComponent } from 'src/app/shared/components/error-messages/error-messages/error-messages.component';
 import { MatInputModule } from '@angular/material/input';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MatInputModule } from '@angular/material/input';
     RouterModule,
     HomeRoutingModule,
     CommonModule,
+    CoreModule,
     MaterialDesignModule,
     ReactiveFormsModule,
     FormsModule,

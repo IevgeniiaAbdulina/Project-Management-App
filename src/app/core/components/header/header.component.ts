@@ -19,6 +19,11 @@ export class HeaderComponent implements OnInit {
   public user?: User;
   public userName?: string;
 
+  localesList = [
+    { code: 'en-US', label: 'English' },
+    { code: 'pl', label: 'Polski' }
+  ];
+
   colorControl = new FormControl('accent' as ThemePalette);
   searchForm = new FormGroup({
     valueInput: new FormControl(''),

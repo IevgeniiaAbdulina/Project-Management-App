@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="7107218117130409950" datatype="html">
+        <source>Boards</source>
+        <target>Tablice</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5501436328245117626" datatype="html">
+        <source>PM App</source>
+        <target>ZP apka</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="517163738879289904" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="ia-hidden=&quot;false&quot; fontIcon=&quot;add&quot;&gt;"/><x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="Ne"/> New Board </source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="ia-hidden=&quot;false&quot; fontIcon=&quot;add&quot;&gt;"/><x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="Ne"/> Nowa tablica </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">30,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2454050363478003966" datatype="html">
+        <source>Login</source>
+        <target>Zaloguj sie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7028204981963450021" datatype="html">
+        <source>Sign up</source>
+        <target>Rejestracja</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2871128429008859966" datatype="html">
+        <source> Edit profile </source>
+        <target> Edytuj profile </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">89,90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8410788168474397098" datatype="html">
+        <source>Log out <x id="INTERPOLATION" equiv-text="{{ user.name }}"/></source>
+        <target>Wyloguj <x id="INTERPOLATION" equiv-text="{{ user.name }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/header/header.component.html</context>
+          <context context-type="linenumber">92,93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6667706478920924889" datatype="html">
+        <source>Project Management <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/>System</source>
+        <target>System zarządzania <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/>Projektami</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="811351987784228256" datatype="html">
+        <source>PM App is an application that helps an individual in a team or group of developers achieve their goals.</source>
+        <target>ZP apka - to aplikacja, która pomaga w zespole lub grupie programistów osiągnąć swoje cele.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2045779543869682721" datatype="html">
+        <source>Get Started</source>
+        <target>Rozpocznij</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="855682038504914593" datatype="html">
+        <source>Work made easy with PM App</source>
+        <target>Łatwa praca dzięki aplikacji</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2655028331450115054" datatype="html">
+        <source> ...Dashboards... </source>
+        <target> ...Pulpit... </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">34,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3878075533998937554" datatype="html">
+        <source>Customizable dashboards</source>
+        <target>Konfigurowalny pulpit</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1676987960294778307" datatype="html">
+        <source>Get a detailed overview of workloads, pin important to-dos, follow important tasks.</source>
+        <target>Uzyskaj szczegółowy przegląd obciążeń, przypinaj ważne zadania do wykonania i śledź ważne zadania.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2445673387565245289" datatype="html">
+        <source>Display information on large cards and easily find any project.</source>
+        <target>Wyświetlaj informacje na kartach i łatwo znajdź dowolny projekt.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8844492651350234365" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Create Boards </source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Twórz tablice </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">44,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3366796351873393834" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Kanban Boards </source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Tablice Kanban </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">50,54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8883276063762538143" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Custom Boards </source>
+         <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Konfigurowalna tablica </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">56,60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6821673353261449996" datatype="html">
+        <source> ...Board... </source>
+        <target> ...Tablica... </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">69,71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6197700755265140014" datatype="html">
+        <source>Transparent Work Management</source>
+        <target>Przejrzyste zarządzanie pracą</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2688109373366780397" datatype="html">
+        <source>Boards keep tasks organized and work moving forward.</source>
+        <target>Tablice pomagają organizować zadania i posuwać projekt do przodu.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7342200365820425946" datatype="html">
+        <source>Board view’s powerful drag-and-drop interface makes it a go-to option for agile teams.</source>
+        <target>Zaawansowany interfejs typu "przeciągnij i upuść" w widoku tablicy sprawia, że jest to idealna opcja dla agile zespołów.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6113553006719719061" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Unlimited Kanban Columns </source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Nieograniczone kolumny Kanban </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">79,83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4935036040317014956" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Manage Your Columns </source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Zarządzaj swoimi kolumnami </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">85,89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1544962383019960694" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Custom Columns </source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> CustKonfigurowalne kolumny </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">91,95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6646186825172852959" datatype="html">
+        <source> ...Manage tasks... </source>
+        <target> ...Zarządzaj zadaniami... </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">102,104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3090012144341600520" datatype="html">
+        <source> Add your tasks. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> Achieve more every day. </source>
+        <target> Dodaj swoje zadania. <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/> Osiągaj więcej każdego dnia. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">106,110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1906152562232421983" datatype="html">
+        <source>Push projects or tasks to completion by organizing your information on stacked cards.</source>
+        <target>Doprowadzaj projekty lub zadania do końca, porządkując informacje na ułożonych w stos kartach.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">112</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="499308801508083160" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Create Tasks </source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Twórz zadania </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">115,119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5586226680017202846" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Custom Workflow </source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Niestandardowy przepływ pracy </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">121,125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8094267400624346599" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Kanban Tasks </source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;bullet-symbol&quot;&gt;"/><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon&gt;"/>task_alt<x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Zadania Kanban </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">127,131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7622873907174156497" datatype="html">
+        <source>About course</source>
+        <target>Informacje o kursie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3186175770721741675" datatype="html">
+        <source>This project was created with the free online course <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://rs.school/js-en/&quot; target=&quot;_blank&quot;&gt;"/>Javascript/Front-end Mentoring Program (in English)<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <target>Ten projekt został stworzony za pomocą bezpłatnego kursu online <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/><x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://rs.school/js-en/&quot; target=&quot;_blank&quot;&gt;"/>Javascript/Front-end Program mentorski (w języku angielskim)<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">151,153</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3386135000488399885" datatype="html">
+        <source>Topics covered: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Angular<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>.</source>
+        <target>Poruszane tematy: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Angular<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">155</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1648914132114295326" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>RS School<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> is free-of-charge and community-based education program conducted by <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/>The Rolling Scopes developer community since 2013.</source>
+        <target><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>RS School<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> to bezpłatny i społeczny program edukacyjny prowadzony przez <x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br&gt;"/>The Rolling Scopes społeczność programistów od 2013 roku.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">157,158</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1243544321887351216" datatype="html">
+        <source>Everyone can study at RS School, regardless of age, professional employment, or place of residence.</source>
+        <target>W RS School może uczyć się każdy, bez względu na wiek, zatrudnienie zawodowe czy miejsce zamieszkania.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">159</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7236757958944113856" datatype="html">
+        <source>The mentors and trainers of our school are front-end and javascript developers from different companies and countries.</source>
+        <target>Mentorami i trenerami tej szkoły są programiści Front-End i JavaScript z różnych firm i krajów.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">160</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2802458434924730821" datatype="html">
+        <source>Upcoming Courses</source>
+        <target>Nadchodzące kursy</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">164</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3353689247624938561" datatype="html">
+        <source> More details</source>
+        <target> Szczegóły</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">174,175</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">187,188</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6316402243348763220" datatype="html">
+        <source>More details</source>
+        <target> Szczegóły</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/features/home/pages/welcome-page/welcome-page.component.html</context>
+          <context context-type="linenumber">200</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
