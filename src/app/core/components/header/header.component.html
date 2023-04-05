@@ -26,7 +26,9 @@
         color="accent"
         (click)="openDialog()"
         [disabled]="false">
-        Create New Board
+
+        <mat-icon aria-hidden="false" fontIcon="add"></mat-icon>
+        New Board
       </button>
     </div>
 
@@ -106,14 +108,12 @@
         </button>
 
         <mat-menu #langMenu="matMenu" xPosition="before">
-          <ng-template matMenuContent let-en="en" let-pl="pl">
-            <button mat-menu-item disabled>
-              <span>Choose a language</span>
-            </button>
-            <mat-divider></mat-divider>
-            <button mat-menu-item>{{en}}</button>
-            <mat-divider></mat-divider>
-            <button mat-menu-item>{{pl}}</button>
+          <ng-template matMenuContent >
+            <ul>
+              <li *ngFor="let locale of localesList">
+                <a mat-menu-item href="/{{locale.code}}/">{{locale.label}}</a>
+              </li>
+            </ul>
           </ng-template>
         </mat-menu>
 
