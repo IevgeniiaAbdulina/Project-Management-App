@@ -7,17 +7,14 @@ Project management system is an application that helps an individual in a team o
 ## General info
 
 - This project is developed with [Rolling Scopes School](https://rs.school/index.html) - JS/FE Course EN 2022Q3
-- [ ! ] You NO need to deploy the backend yourself to demonstrate the working application.
 
 - [Link with task description](https://github.com/rolling-scopes-school/js-fe-course-en/blob/main/tasks/angular/project-management-system.md)
 
-## Application deploy [link](https://rolling-scopes-school.github.io/ievgeniiaabdulina-JSFEEN2022Q3/project-management-app/)
+## Application deploy [link](https://ievgeniiaabdulina.github.io/Project-Management-App)
 
 ## Screenshots
 
-<!-- ![Screenshot](./src/assets/img/app-screenshot.png)
- -->
- <img src="./src/assets/img/app-screenshot.png" alt= “screenshot” width="600px" height="auto">
+<img src="https://firebasestorage.googleapis.com/v0/b/pm-app-angular.appspot.com/o/screenshot-pm-app.png?alt=media&token=0180fb15-add2-47c7-a5f2-a1a85866a683" alt= “screenshot” width="600px" height="auto">
 
 ## Table of contents
 
@@ -32,10 +29,10 @@ Project management system is an application that helps an individual in a team o
 
 ## Application structure
 
-- welcome page
-- user login
-- projects listing page
-- selected project management page
+- Welcome page
+- User Login/Sign up
+- Dashboard with Boards
+- Selected project management page
 
 ## Technologies
 
@@ -44,8 +41,6 @@ Project management system is an application that helps an individual in a team o
 - Sass
 
 ## Backend
-
-- [!] You NO need to deploy the backend yourself to demonstrate the working application.
 
 Use https://github.com/rolling-scopes-school/final-task-backend as a backend.
 There is a description of the steps to get started, as well as a list of available requests in the repository.

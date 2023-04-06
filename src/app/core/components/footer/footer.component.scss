@@ -1,5 +1,7 @@
 footer {
-  background-color: rgb(235, 235, 235);
+  height: 140px;
+  background-color: #3d3ab7;
+  padding-top: 24px;
 }
 
 .attribution {
@@ -12,7 +14,17 @@ footer {
   align-items: center;
 
   p {
+    color: white;
     margin: 0;
+  }
+
+  a {
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+  }
+  a:hover {
+    color: rgb(0, 255, 255);
   }
 }
 
