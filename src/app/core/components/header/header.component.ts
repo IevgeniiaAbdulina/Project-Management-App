@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {ThemePalette} from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Board } from 'src/app/features/user/models/board';
 import { User } from 'src/app/features/user/models/user';
 import { AuthUserService } from 'src/app/features/user/services/auth-user/auth-user.service';
@@ -14,12 +15,14 @@ import { ModalFormComponent } from 'src/app/shared/components/modal-form/modal-f
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+  private subscription: Subscription = new Subscription;
   public user?: User;
   public userName?: string;
 
-  localesList = [
+  localesList: { code: string, label: string }[] = [
     { code: 'en-US', label: 'English' },
     { code: 'pl', label: 'Polski' }
   ];
@@ -50,6 +53,10 @@ export class HeaderComponent implements OnInit {
     }, 1000)
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   onSearchSubmit() {
     this.searchForm.setValue({
       valueInput: ''
@@ -68,7 +75,7 @@ export class HeaderComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    let subscriptionDialogNeweBoard = dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog was closed, DOARD result: ${result}`);
 
       const board: Board = {
@@ -83,11 +90,14 @@ export class HeaderComponent implements OnInit {
         board.owner = userId;
         board.users?.push(userId  ?? '');
 
-      this.boardService.createBord(board).subscribe(() => {
-        this.boardService.getBoardsByUserId(userId)
-          .subscribe(boards => this.boardService.boardListSubject.next(boards))
-      })
+        let subscriptionBoard = this.boardService.createBord(board).subscribe(() => {
+          let subscriptionBoards = this.boardService.getBoardsByUserId(userId).subscribe(boards => this.boardService.boardListSubject.next(boards));
+
+          this.subscription.add(subscriptionBoards);
+        });
+        this.subscription.add(subscriptionBoard);
     });
+    this.subscription.add(subscriptionDialogNeweBoard);
   };
 
   // User loged out confirmation modal
@@ -97,12 +107,13 @@ export class HeaderComponent implements OnInit {
       data: {innerDialogText: 'Do you want to Log out?'}
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    let subscriptionDialogLogOut = dialogRef.afterClosed().subscribe((result) => {
       if(result) {
         this.authUserService.logout();
         this.boardService.boardListSubject.next(null);
       };
-    })
+    });
+    this.subscription.add(subscriptionDialogLogOut);
   }
 
   /**
