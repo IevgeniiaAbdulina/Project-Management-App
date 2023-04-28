@@ -1,0 +1,17 @@
+.container {
+  width: 100%;
+  height: calc(100vh - 84px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+img {
+  max-width: 560px;
+  height: auto;
+}
+
+p {
+  margin-top: auto;
+}
