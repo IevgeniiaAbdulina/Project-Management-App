@@ -13,14 +13,11 @@ export class AuthGuard implements CanActivate, CanLoad {
   public canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      // console.log('CHECK AUTH GUARD ');
-
       const url: string = state.url;
       return this.checkLogin(url);
   }
 
   checkLogin(url: string): boolean | Observable<boolean> | Promise<boolean> {
-    // console.log('Ckeck LOGIN');
     const token = localStorage.getItem('token');
 
     if(token) {
