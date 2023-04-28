@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalFormData } from 'src/app/features/interfaces/modal-form-data';
@@ -8,7 +8,8 @@ import { ModalFormComponent } from '../../modal-form/modal-form.component';
 @Component({
   selector: 'app-modal-edit-task',
   templateUrl: './modal-edit-task.component.html',
-  styleUrls: ['./modal-edit-task.component.scss']
+  styleUrls: ['./modal-edit-task.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalEditTaskComponent {
   public editTaskForm!: FormGroup;
@@ -16,16 +17,11 @@ export class ModalEditTaskComponent {
   title: string | null = null;
   description: string | null = null;
 
-
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: ModalFormData,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ModalFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ModalFormData,
   ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close(new ModalFormResult('cancel'));
-  }
 
   ngOnInit(): void {
     this.editTaskForm = new FormGroup({
@@ -38,7 +34,10 @@ export class ModalEditTaskComponent {
 
     this.title = this.data.title;
     this.description = this.data.description;
+  }
 
+  onNoClick(): void {
+    this.dialogRef.close(new ModalFormResult('cancel'));
   }
 
   onSubmit(): void {

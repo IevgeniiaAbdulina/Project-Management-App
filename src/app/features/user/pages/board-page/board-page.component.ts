@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { ModalFormComponent } from 'src/app/shared/components/modal-form/modal-form.component';
@@ -13,7 +13,8 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-board-page',
   templateUrl: './board-page.component.html',
-  styleUrls: ['./board-page.component.scss']
+  styleUrls: ['./board-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BoardPageComponent implements OnInit  {
   public board?: Board;
