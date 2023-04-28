@@ -1,37 +1,38 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
 import { TaskItem } from '../../models/task';
-import { TaskService } from '../../services/task/task.service';
 import { ColumnItem, ColumnTitle } from '../../models/column';
-import { AuthUserService } from '../../services/auth-user/auth-user.service';
-import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { ModalFormComponent } from 'src/app/shared/components/modal-form/modal-form.component';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { ColumnService } from '../../services/column/column.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
+
+import { TaskService } from '../../services/task/task.service';
+import { AuthUserService } from '../../services/auth-user/auth-user.service';
+import { ColumnService } from '../../services/column/column.service';
 import { AlertService } from 'src/app/shared/services/alert-service/alert-service.service';
 
+import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit {
+  @Input() column?: ColumnItem;
+
   columnList: ColumnItem[] = this.columnService.columnListValue ?? []
   taskList: TaskItem[] = [];
 
   formColumnTitle: FormGroup;
   isEdited = false;
-  columnTitle = this.column?.title;
 
-  @Input() column?: ColumnItem;
-  get inputValue(): ColumnTitle {
-    return this.formColumnTitle?.value;
-  }
+  columnTitle = this.column?.title;
   boardId = '';
   columnId = '';
-  counterOrder = 0;
+
+  private counterOrder = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -76,7 +77,6 @@ export class TaskListComponent implements OnInit {
     this.columnTitle = this.formColumnTitle.controls['title'].value;
   }
 
-
   onFormSubmit(event: any) {
     this.isEdited = false;
     event.preventDefault();
@@ -100,7 +100,6 @@ export class TaskListComponent implements OnInit {
     this.formColumnTitle?.controls['title'].setValue(this.columnTitle);
     this.formColumnTitle.controls['title'].disable();
   }
-  // ----------------------------
 
   /**
    *
@@ -108,7 +107,6 @@ export class TaskListComponent implements OnInit {
    * ----------------------------
    */
   onDeleteColumn() {
-    console.log('[DELETE] button has been clicked');
     if(!this.column) return;
 
     this.dialog.open(ConfirmationModalComponent, {
@@ -116,16 +114,17 @@ export class TaskListComponent implements OnInit {
         innerDialogText: 'Are you sure want to delete this column?',
       }
     }).afterClosed().subscribe(result => {
-      console.log(`Dialog was closed, DELETE TASK result: ${result} for columnId: ${this.columnId}`);
       if(result) {
         this.columnService.onDeleteColumnUpdatePage(this.column?.boardId ?? '', this.column?._id ?? '')
-      } else {
-        //nothing/cancel has been clicked - do nothing
       }
     });
   }
-  // ----------------------------
 
+  /**
+   *
+   * CREATE Task
+   * ----------------------------
+   */
   onCreateTask() {
     const userId = this.userService.userValue?._id;
 
@@ -133,7 +132,6 @@ export class TaskListComponent implements OnInit {
     const users: [string] = [userId];
 
     this.openDialogCreateTask().subscribe((result) => {
-      console.log(`Dialog was closed, TASK result: ${result}`);
       if(!result) return;
 
       const newTask = {
@@ -159,10 +157,6 @@ export class TaskListComponent implements OnInit {
     this.counterOrder++;
   }
 
-  private getTasks(boardId: string = this.boardId, columnId: string = this.columnId) {
-    this.taskService.getTasksInColumn(boardId, columnId)
-  }
-
   openDialogCreateTask(): Observable<any> {
     const dialogRef = this.dialog.open(ModalFormComponent, {
       data: {
@@ -179,9 +173,6 @@ export class TaskListComponent implements OnInit {
    *
    * Drag & Drop tasks
    *
-   */
-  /**
-   *
    * updates orders according to item position,
    * starting from 0
    */
@@ -194,11 +185,10 @@ export class TaskListComponent implements OnInit {
       return item;
     });
   }
-  // --------------------------------------------
 
   /**
    *
-   * UpdateTaskMap
+   * Update Task Map
    *
    */
     updateTaskMap() {
@@ -210,12 +200,7 @@ export class TaskListComponent implements OnInit {
       }
     }
 
-
-  // --------------------------------------------
-
   dropItem(event: CdkDragDrop<TaskItem[]>) {
-
-
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
 
@@ -233,8 +218,6 @@ export class TaskListComponent implements OnInit {
         event.container.id,
         event.item.data._id,
         updatedTask).subscribe((resp) => {
-          console.log('[MOVE] UPDATED TASKS >>>>> : ', resp)
-
           this.updateTaskMap();
           this.taskService.updateSetOfTasks();
         })
@@ -260,17 +243,36 @@ export class TaskListComponent implements OnInit {
         event.container.id,
         event.item.data._id,
         updatedTask).subscribe((resp) => {
-          console.log('[TRANSFER] UPDATED TASKS >>>>> : ', resp)
-
           this.updateTaskMap();
           this.taskService.updateSetOfTasks();
         })
     }
   }
 
-
+  /**
+   *
+   * Update columnList map
+   * ----------------------------
+   */
   getConnectedList(): any[] {
     return this.columnList.map(x => `${x._id}`)
   }
 
+  /**
+   *
+   * GET inputValue
+   * ----------------------------
+   */
+  private get inputValue(): ColumnTitle {
+    return this.formColumnTitle?.value;
+  }
+
+  /**
+   *
+   * GET Tasks
+   * ----------------------------
+   */
+  private getTasks(boardId: string = this.boardId, columnId: string = this.columnId) {
+    this.taskService.getTasksInColumn(boardId, columnId)
+  }
 }

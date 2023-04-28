@@ -52,8 +52,7 @@ export class BoardService {
           const boardsSet = this.boardListValue?.filter(board => board._id !== resp._id);
           this.boardListSubject.next(boardsSet ?? [])
         },
-        error: err => {
-          console.log(err)
+        error: () => {
           this.alertService.alertMessage('Cannot delete this board', 'close', 'alert-error');
         }
       })

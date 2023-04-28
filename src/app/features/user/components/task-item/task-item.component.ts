@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TaskItem } from '../../models/task';
 import { TaskService } from '../../services/task/task.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,7 +11,7 @@ import { ModalFormResult } from 'src/app/features/interfaces/modal-form-result';
   templateUrl: './task-item.component.html',
   styleUrls: ['./task-item.component.scss']
 })
-export class TaskItemComponent implements OnInit {
+export class TaskItemComponent {
   @Input() task?: TaskItem;
 
   constructor(
@@ -19,12 +19,7 @@ export class TaskItemComponent implements OnInit {
     public dialog: MatDialog,
   ) {}
 
-  ngOnInit() {
-  }
-
   onEditTaskItem(task: TaskItem) {
-    console.log('EDIT TASK button has been clicked');
-
     const dialogRef = this.dialog.open(ModalEditTaskComponent, {
       data: {
         modalHeader: 'Edit current task',
@@ -37,7 +32,6 @@ export class TaskItemComponent implements OnInit {
       if(!result) return;
       const modalResult = result as ModalFormResult
 
-      // console.log(`Dialog was closed, EDIT TASK result: ${modalResult.result} = ${JSON.stringify(modalResult.payload) }`);
       if(modalResult.result === 'edit') {
         const updatedTask = {
           title: modalResult.payload?.title,
@@ -60,13 +54,10 @@ export class TaskItemComponent implements OnInit {
             innerDialogText: 'Are you sure want to delete this task?',
           }
         }).afterClosed().subscribe(result => {
-          // console.log(`Dialog was closed, DELETE TASK result: ${result} for taskId: ${task._id}`);
           if(result) {
             this.taskService.onDeleteTaskUpdatePage(task.boardId ?? '', task.columnId ?? '', task._id ?? '')
           }
           });
-      } else {
-        //nothing/cancel has been clicked - do nothing
       }
     });
   }

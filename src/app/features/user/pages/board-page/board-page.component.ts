@@ -29,7 +29,6 @@ export class BoardPageComponent implements OnInit  {
 
   ngOnInit() {
     this.route.params.subscribe(board => {
-      // console.log('ROUTE Board ---> ', board)
       this.boardService.getBoardById(board['id'])
         .subscribe(board => {
           this.board = board
@@ -82,8 +81,6 @@ export class BoardPageComponent implements OnInit  {
 
   // Open modal window with form for column creation
   createColumn(): void {
-    // console.log('New COLUMN create button clecked');
-
     const newColumn: ColumnItem = {
       title: '',
       order: this.columnList.length,
@@ -98,8 +95,6 @@ export class BoardPageComponent implements OnInit  {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog was closed, COLUMN result: ${result}`);
-
       if(!result) { return }
       newColumn.title = result;
 
@@ -128,17 +123,11 @@ export class BoardPageComponent implements OnInit  {
       title: event.item.data.title,
       order: event.currentIndex
     }
-    console.log("--> sending to server: ", updatedColumn);
 
     this.columnService.updateColumnById(this.board?._id ?? '', event.item.data._id, updatedColumn)
       .subscribe((col) => {
         this.columnList = this.updateOrders(this.columnList)
-
         this.columnService.updateSetOfColumns(this.columnList)
-
-        console.log('DROP COLUMNS ', this.columnList)
       })
   }
-
-
 }

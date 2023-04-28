@@ -10,13 +10,12 @@ import { TokenData, User } from '../../models/user';
 
 @Injectable({ providedIn: 'root' })
 export class AuthUserService {
-  private userSubject: BehaviorSubject<User | null>;
   public user: Observable<User | null>;
-
-  private tokenSubject: BehaviorSubject<TokenData | null>;
   public token?: Observable<TokenData | null>;
-
   public users?: any[];
+
+  private userSubject: BehaviorSubject<User | null>;
+  private tokenSubject: BehaviorSubject<TokenData | null>;
 
   constructor(
     private router: Router,
@@ -61,8 +60,6 @@ export class AuthUserService {
   updateUserData(id: string, updatedUser: any) {
 
     this.updateUserById(id, updatedUser).subscribe((user) => {
-      console.log('[UPDATE USER DATA]', user);
-
       this.loadUser(user);
     })
   }

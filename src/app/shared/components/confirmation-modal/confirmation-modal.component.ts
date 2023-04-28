@@ -12,19 +12,17 @@ export class ConfirmationModalComponent {
   dialogResult = true;
 
   constructor(
-    public dialogRef: MatDialogRef<ConfirmationModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ConfirmationDialogData,
+    public dialogRef: MatDialogRef<ConfirmationModalComponent>,
   ) {
     this.innerModalText = 'Confirm your action';
   }
 
   close() {
-    console.log('Close Confirmation modal');
     this.dialogRef.close(!this.dialogResult);
   }
 
   confirmHandler(): void {
-    console.log('Confirmation submit');
     this.dialogRef.close(this.dialogResult);
   }
 }

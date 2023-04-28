@@ -18,11 +18,10 @@ import { ModalFormComponent } from 'src/app/shared/components/modal-form/modal-f
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  private subscription: Subscription = new Subscription;
   public user?: User;
   public userName?: string;
 
-  localesList: { code: string, label: string }[] = [
+  public localesList: { code: string, label: string }[] = [
     { code: 'en-US', label: 'English' },
     { code: 'pl', label: 'Polski' }
   ];
@@ -36,6 +35,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   color: ThemePalette = 'accent';
   checked = true;
   disabled = false;
+
+  private subscription: Subscription = new Subscription;
 
   constructor(
     public dialog: MatDialog,
@@ -76,14 +77,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
 
     let subscriptionDialogNeweBoard = dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog was closed, DOARD result: ${result}`);
-
       const board: Board = {
         title: '',
         owner: '',
         users: []
       }
-
 
       if(!result) { return }
         board.title = result;

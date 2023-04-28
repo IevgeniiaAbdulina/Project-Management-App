@@ -69,8 +69,7 @@ export class TaskService {
 
           this.getTasksInColumn(boardId, columnId);
         },
-        error: err => {
-          console.log(err)
+        error: () => {
           this.alertService.alertMessage('Cannot delete task', 'close', 'alert-error');
         }
       })
@@ -79,8 +78,6 @@ export class TaskService {
   updateTask(boardId: string, columnId: string, taskId: string, taskToUpdate: TaskItem) {
     this.updateTaskById(boardId, columnId, taskId, taskToUpdate).subscribe({
       next: (task) => {
-        // console.log('[RES] UPDATED TASKS >>>>> : ', task);
-
         let tasksInColumn = this.tasksMap.get(columnId) ?? [];
         let oldTask = tasksInColumn.find((t) => t._id === taskId);
         if(oldTask != undefined) {
@@ -94,8 +91,7 @@ export class TaskService {
 
         this.dataHasBeenFetchedSubject.next(Date.now());
       },
-      error: err => {
-        console.log(err)
+      error: () => {
         this.alertService.alertMessage('Cannot update this task', 'close', 'alert-error');
       }
     });
@@ -114,7 +110,6 @@ export class TaskService {
       .subscribe((tasks) => {
         tasks.sort((a, b) => (a?.order ?? 0) - (b?.order ?? 0));
         this.tasksMap.set(columnId, tasks);
-        // console.log('TASK MAP ==>', this.tasksMap.get(columnId));
 
         this.taskListSubject.next(this.tasksMap)
         this.dataHasBeenFetchedSubject.next(Date.now())

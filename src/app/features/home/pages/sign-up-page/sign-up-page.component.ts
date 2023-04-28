@@ -45,11 +45,7 @@ export class SignUpPageComponent implements OnInit{
     });
   };
 
-  get f() { return this.signUpForm.controls };
-
   onSubmit(formData: FormGroup, formDirective: FormGroupDirective): void {
-    console.log('Sign Up submited');
-
     this.authUserService.register(formData.value)
       .pipe(first())
       .subscribe({
@@ -59,8 +55,6 @@ export class SignUpPageComponent implements OnInit{
           this.router.navigate(['/login'], { relativeTo: this.route });
         },
         error: error => {
-          console.log('[ERROR]  in SIGN UP page --> ', error)
-
           this.alertService.alertMessage('Something went wrong', 'close', 'alert-error');
         }
       })

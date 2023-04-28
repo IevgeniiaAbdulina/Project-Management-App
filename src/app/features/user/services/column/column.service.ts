@@ -27,7 +27,6 @@ export class ColumnService {
   updateColumnOnPage(boardId: string, columnId: string, column: any) {
     this.updateColumnById(boardId, columnId, column).subscribe({
       next: (column) => {
-        console.log('[SUBMIT EDIT COLUMN] ======== >', column);
         this.alertService.alertMessage('Column update success', 'close', 'alert-success');
 
         let oldColumns = this.columnListValue ?? [];
@@ -38,8 +37,7 @@ export class ColumnService {
           this.columnListSubject.next(oldColumns)
         }
       },
-      error: err => {
-        console.log(err)
+      error: () => {
         this.alertService.alertMessage('Cannot update this column', 'close', 'alert-error');
       }
     })
@@ -79,8 +77,7 @@ export class ColumnService {
 
           this.updateSetOfColumns(updatedColumnSet);
         },
-        error: err => {
-          console.log(err)
+        error: () => {
           this.alertService.alertMessage('Cannot delete this column', 'close', 'alert-error');
         }
       })
@@ -98,7 +95,6 @@ export class ColumnService {
   getColumnsInBoard(boardId: string) {
     return this.http.get<ColumnItem[]>(`boards/${boardId}/columns`)
     .subscribe( columns => {
-        console.log('RESPONSE getColumnsInBoard COLUMN: ', columns)
       columns.sort((a, b) => (a?.order ?? 0) - (b?.order ?? 0));
       this.columnListSubject.next(columns);
     })
@@ -138,7 +134,6 @@ export class ColumnService {
   getColumnsByIdsListOrUserId(columnIdList: [string], userId: string) {
     return this.http.get<ColumnItem[]>('columnsSet')
       .pipe(map(columns => {
-        console.log('Get Columns by Ids List or UserId', columns);
         if(columnIdList) {
           columnIdList.forEach(columnId => {
             columns.filter(col => col._id === columnId);

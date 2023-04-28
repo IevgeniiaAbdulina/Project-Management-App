@@ -37,7 +37,6 @@ export class LoginPageComponent implements OnInit {
     })
 
     this.authUserService.user.subscribe((u) => {
-      console.log('[user] updated subject: ', u)
       if(u != null && u != undefined) {
         // get return url from query parameters or default to home page
         const returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'users/dashboard';
@@ -47,20 +46,17 @@ export class LoginPageComponent implements OnInit {
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.loginForm.controls}
+  get formFields() { return this.loginForm.controls}
 
   onSubmit() {
     if(this.loginForm.invalid) return;
-    this.authUserService.login(this.f['login'].value, this.f['password'].value)
+    this.authUserService.login(this.formFields['login'].value, this.formFields['password'].value)
       .pipe(first())
       .subscribe({
         next: () => {
-          // do nothing...
           this.alertService.alertMessage('Login success!', 'close', 'alert-success');
         },
         error: error => {
-          console.log('[ERROR]  in LOGIN page --> ', error)
-
           this.alertService.alertMessage('Something went wrong', 'close', 'alert-error');
           this.submitted = false;
         }
