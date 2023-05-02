@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {ThemePalette} from '@angular/material/core';
 import {ProgressBarMode} from '@angular/material/progress-bar';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
@@ -7,7 +7,6 @@ import { NavigationEnd, NavigationStart, Router } from '@angular/router';
   selector: 'app-loading-progress-bar',
   templateUrl: './loading-progress-bar.component.html',
   styleUrls: ['./loading-progress-bar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingProgressBarComponent implements OnInit {
   color: ThemePalette = 'warn';

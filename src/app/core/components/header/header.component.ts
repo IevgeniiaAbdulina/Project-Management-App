@@ -3,9 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import {ThemePalette} from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { Board } from 'src/app/features/user/models/board';
-import { User } from 'src/app/features/user/models/user';
 import { AuthUserService } from 'src/app/features/user/services/auth-user/auth-user.service';
 import { BoardService } from 'src/app/features/user/services/board/board.service';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
@@ -18,8 +17,7 @@ import { ModalFormComponent } from 'src/app/shared/components/modal-form/modal-f
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  public user?: User;
-  public userName?: string;
+  public userName?: Observable<String | null>;
 
   public localesList: { code: string, label: string }[] = [
     { code: 'en-US', label: 'English' },
@@ -37,6 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   disabled = false;
 
   private subscription: Subscription = new Subscription;
+  private userNameSubject: Subject<String | null> = new Subject();
 
   constructor(
     public dialog: MatDialog,
@@ -44,14 +43,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     public boardService: BoardService,
     private router: Router,
   ) {
+    this.userName = this.userNameSubject.asObservable();
   }
 
   ngOnInit() {
-    this.user = this.authUserService.userValue as User;
+    this.authUserService.user.subscribe(
+      user =>  this.userNameSubject.next(user?.name ?? "")
+    )
 
     setInterval(() => {
-      this.userName = JSON.parse(localStorage.getItem('name')!);
-    }, 1000)
+      let name = JSON.parse(localStorage.getItem('name')!);
+      this.userNameSubject.next(name)
+    }, 500)
   }
 
   ngOnDestroy() {

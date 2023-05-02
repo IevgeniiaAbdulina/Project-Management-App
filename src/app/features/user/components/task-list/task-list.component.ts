@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { TaskItem } from '../../models/task';
 import { ColumnItem, ColumnTitle } from '../../models/column';
@@ -18,7 +18,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskListComponent implements OnInit {
   @Input() column?: ColumnItem;

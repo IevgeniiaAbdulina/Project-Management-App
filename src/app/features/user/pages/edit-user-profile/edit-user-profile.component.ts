@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
@@ -11,7 +11,6 @@ import { AlertService } from 'src/app/shared/services/alert-service/alert-servic
   selector: 'app-edit-user-profile',
   templateUrl: './edit-user-profile.component.html',
   styleUrls: ['./edit-user-profile.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditUserProfileComponent implements OnInit {
   hide = true;

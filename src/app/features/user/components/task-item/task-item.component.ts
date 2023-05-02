@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TaskItem } from '../../models/task';
 import { TaskService } from '../../services/task/task.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,7 +10,6 @@ import { ModalFormResult } from 'src/app/features/interfaces/modal-form-result';
   selector: 'app-task-item',
   templateUrl: './task-item.component.html',
   styleUrls: ['./task-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskItemComponent {
   @Input() task?: TaskItem;

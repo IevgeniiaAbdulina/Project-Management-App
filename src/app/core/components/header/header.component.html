@@ -69,13 +69,12 @@
 
       <!-- unexpired token | user is authorised -->
 
-      <div class="nav-auth" *ngIf="authUserService.user | async as user">
-        <!-- <p class="user-name">{{ user.name }}</p> -->
-        <p class="user-name">{{ userName }}</p>
+      <div class="nav-auth" *ngIf="authUserService.user | async">
+        <p class="user-name">{{ userName | async }}</p>
 
         <button mat-icon-button
           [matMenuTriggerFor]="appMenu"
-          [matMenuTriggerData]="{name: user.name}">
+          [matMenuTriggerData]="{name: userName }">
 
           <mat-icon>account_circle</mat-icon>
         </button>
@@ -89,7 +88,7 @@
               Edit profile
             </a>
             <mat-divider></mat-divider>
-            <button mat-menu-item (click)="onLogOut()" routerLinkActive="active">Log out {{ user.name }}</button>
+            <button mat-menu-item (click)="onLogOut()" routerLinkActive="active">Log out <span>{{ userName | async }}</span></button>
           </ng-template>
         </mat-menu>
 

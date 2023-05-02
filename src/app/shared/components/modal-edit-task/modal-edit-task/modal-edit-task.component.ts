@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalFormData } from 'src/app/features/interfaces/modal-form-data';
@@ -9,7 +9,6 @@ import { ModalFormComponent } from '../../modal-form/modal-form.component';
   selector: 'app-modal-edit-task',
   templateUrl: './modal-edit-task.component.html',
   styleUrls: ['./modal-edit-task.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalEditTaskComponent {
   public editTaskForm!: FormGroup;

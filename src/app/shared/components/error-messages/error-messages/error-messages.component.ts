@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AbstractControl } from '@angular/forms';
 import { getValidatorErrorMessage } from 'src/app/shared/utils/validators-utils';
@@ -9,7 +9,6 @@ import { getValidatorErrorMessage } from 'src/app/shared/utils/validators-utils'
   imports: [CommonModule],
   styleUrls: ['./error-messages.component.scss'],
   template: `<ng-container *ngIf="errorMessage !== null">{{ errorMessage }}</ng-container>`,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ErrorMessagesComponent {
   @Input()
