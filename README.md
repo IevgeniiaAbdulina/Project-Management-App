@@ -1,3 +1,15 @@
+<!-- LOCAL TO START PROJECT -->
+
+<!-- BACK files: https://github.com/IevgeniiaAbdulina/Manager-App-BackEnd -->
+<!-- BACKEND: npm start -->
+
+<!-- FRONT files: https://github.com/IevgeniiaAbdulina/Project-Management-App -->
+<!-- Front: ng serve --open -->
+
+<!-- Start local project in PL localisation:  -->
+<!-- ng serve --configuration=pl --open -->
+<!-- ng build -->
+
 # Project Management System Application
 
 Project management system is an application that helps an individual in a team or group of developers achieve their goals.
