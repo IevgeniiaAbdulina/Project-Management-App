@@ -96,7 +96,7 @@
 
       <!-- Localization -->
 
-      <div class="lang">
+      <div class="lang" *ngIf="!(authUserService.user | async)">
         <button mat-icon-button
         matTooltip="Choose a language"
           aria-label="Localization icon button with a vertical three language icon"

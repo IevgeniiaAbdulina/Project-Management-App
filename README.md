@@ -6,6 +6,8 @@
 <!-- FRONT files: https://github.com/IevgeniiaAbdulina/Project-Management-App -->
 <!-- Front: ng serve --open -->
 
+<!-- Open application deployed page: https://ievgeniiaabdulina.github.io/Project-Management-App -->
+
 <!-- Start local project in PL localisation:  -->
 <!-- ng serve --configuration=pl --open -->
 <!-- ng build -->
