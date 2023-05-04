@@ -12,6 +12,9 @@
 <!-- ng serve --configuration=pl --open -->
 <!-- ng build -->
 
+<!-- Deploy an Angular App to GitHub Pages With Angular CLI: -->
+<!-- ng deploy --base-href=https://GithubUserName.github.io/GithubRepoName/ -->
+
 # Project Management System Application
 
 Project management system is an application that helps an individual in a team or group of developers achieve their goals.
@@ -47,6 +50,7 @@ Project management system is an application that helps an individual in a team o
 - User Login/Sign up
 - Dashboard with Boards
 - Selected project management page
+- Kanban Tasks
 
 ## Technologies
 
